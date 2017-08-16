@@ -5,19 +5,22 @@
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+
+
+
+if [ -f ~/.bash/.bash_aliases ]; then
+    . ~/.bash/.bash_aliases
 fi
 
 
 # load environment variables
-if [ -f ~/.bash_profile ]; then
-    . ~/.bash_profile
+if [ -f ~/.bash/.bash_profile ]; then
+    . ~/.bash/.bash_profile
 fi
 
 
 # load bash functions
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
+if [ -f ~/.bash/.bash_functions ]; then
+    . ~/.bash/.bash_functions
 fi
 
