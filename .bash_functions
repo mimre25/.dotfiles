@@ -21,7 +21,7 @@ convertToEps() {
   for i in `ls *.$1`
   do
     j=`basename -s $1 ${i}`;
-    convert ${i} ${j}eps;
+    convert -density 300 ${i} ${j}eps;
   done
 }
 
@@ -31,8 +31,10 @@ pngToEps() {
       j=`basename -s '.png' $i`;
       convert -density 300 $i $j.eps;
   done
+}
 
 epsToJpg() {
   i=$(basename -s '.eps' $1);
-  convert -density 300 $1 -resize 1024x1024 $i.jpg 
+  convert -density 300 $1 -resize 1024x1024 $i.jpg;
 }
+
