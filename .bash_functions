@@ -17,6 +17,13 @@ compress-pdf() {
 
 }
 
+convertToEps() {
+  for i in `ls *.$1`
+  do
+    j=`basename -s $1 ${i}`;
+    convert -density 300 ${i} ${j}eps;
+  done
+}
 
 pngToEps() {
   for i in `ls`; 
@@ -28,5 +35,6 @@ pngToEps() {
 
 epsToJpg() {
   i=$(basename -s '.eps' $1);
-  convert -density 300 $1 -resize 1024x1024 $i.jpg 
+  convert -density 300 $1 -resize 1024x1024 $i.jpg;
 }
+

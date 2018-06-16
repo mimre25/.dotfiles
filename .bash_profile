@@ -11,3 +11,5 @@
 export HISTTIMEFORMAT="%y-%m-%d %T "
 export HISTSIZE=-1
 export HISTFILESIZE=-1
+
+export CMAKE_PREFIX_PATH="/usr/bin/qmake"
