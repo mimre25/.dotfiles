@@ -38,3 +38,8 @@ epsToJpg() {
   convert -density 300 $1 -resize 1024x1024 $i.jpg;
 }
 
+
+svgToEps()
+{
+  inkscape $1 -E $2 --export-ignore-filters --export-ps-level=3
+}
