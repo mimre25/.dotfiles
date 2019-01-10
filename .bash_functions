@@ -43,3 +43,9 @@ svgToEps()
 {
   inkscape $1 -E $2 --export-ignore-filters --export-ps-level=3
 }
+
+trimImage()
+{
+  convert $1 -trim out.bmp;
+  mv out.bmp $i; 
+}
