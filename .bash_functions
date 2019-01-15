@@ -1,3 +1,4 @@
+#!/bin/bash
 op() {
   for i in *.pdf;
   do
@@ -46,6 +47,9 @@ svgToEps()
 
 trimImage()
 {
-  convert $1 -trim out.bmp;
-  mv out.bmp $i; 
+  filename=$(basename -- "$1");
+  extension="${filename##*.}";
+  filename="${filename%.*}";
+  convert $1 -trim out.${extension};
+  mv out.${extension} $1; 
 }
