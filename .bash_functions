@@ -88,3 +88,8 @@ function average()
     awk -v col=$1 '{x+=$col; next} END{print x/NR}' $2;
 }
 
+
+svgToEps()
+{
+  inkscape $1 -E ${1/.svg/.eps}
+}
