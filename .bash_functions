@@ -73,7 +73,7 @@ function openWebloc()
 
 clearLatex()
 {
-  rm $1.aux $1.bbl $1.blg $1.out $1.log $1.pdf $1.synctex.gz;
+  rm $1.aux $1.bbl $1.blg $1.out $1.log $1.pdf $1.synctex.gz $1.glsdefs $1.lof $1.lot $1.toc;
 }
 
 
@@ -88,3 +88,8 @@ function average()
     awk -v col=$1 '{x+=$col; next} END{print x/NR}' $2;
 }
 
+
+svgToEps()
+{
+  inkscape $1 -E ${1/.svg/.eps}
+}
