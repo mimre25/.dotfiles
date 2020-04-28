@@ -10,8 +10,8 @@
 
 
 export HISTTIMEFORMAT="%y-%m-%d %T "
-export HISTSIZE=-1
-export HISTFILESIZE=-1
+export HISTSIZE=2000000
+export HISTFILESIZE=2000000
 
 export VISUAL=vim;
 export EDITOR="$VISUAL";
