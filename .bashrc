@@ -14,9 +14,9 @@ fi
 
 
 # load environment variables
-if [ -f ~/.bash/.bash_profile ]; then
-    . ~/.bash/.bash_profile
-fi
+#if [ -f ~/.bash/.bash_profile ]; then
+#    . ~/.bash/.bash_profile
+#fi
 
 
 # load bash functions
