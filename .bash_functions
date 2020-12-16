@@ -93,3 +93,15 @@ svgToEps()
 {
   inkscape $1 -E ${1/.svg/.eps}
 }
+
+
+function convertToGif()
+{
+  ffmpeg -i $1 $1.gif
+
+}
+
+function convertToGifCropped()
+{
+  ffmpeg -i $1 -filter:v "crop=1920:940:0:140" $1-cropped.gif
+}
