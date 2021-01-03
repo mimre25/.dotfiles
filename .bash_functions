@@ -105,3 +105,9 @@ function convertToGifCropped()
 {
   ffmpeg -i $1 -filter:v "crop=1920:940:0:140" $1-cropped.gif
 }
+
+
+function cleanSwap()
+{
+  sudo swapoff -a && sudo swapon -a;
+}
