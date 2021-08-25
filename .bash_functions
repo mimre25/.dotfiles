@@ -34,6 +34,11 @@ pngToEps() {
   done
 }
 
+epsToPng() {
+  i=$(basename -s '.eps' $1);
+  convert -density 300 $1 -resize 1024x1024 $i.png;
+}
+
 epsToJpg() {
   i=$(basename -s '.eps' $1);
   convert -density 300 $1 -resize 1024x1024 $i.jpg;
