@@ -122,3 +122,11 @@ function createCondaEnv()
 {
   conda create -n $1 python=3.8 pip -y
 }
+
+
+function convertToMP4()
+{
+  file=$1
+  outfile=${file%.*}
+  ffmpeg -i ${file} -codec copy ${outfile}.mp4
+}
