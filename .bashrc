@@ -20,7 +20,7 @@ fi
 
 
 # load bash functions
-if [ -f ~/.bash/.bash_functions ]; then
-    . ~/.bash/.bash_functions
-fi
-
+#if [ -f ~/.bash/.bash_functions ]; then
+#    . ~/.bash/.bash_functions
+#fi
+export PATH=$PATH:~/.bash/functions/;

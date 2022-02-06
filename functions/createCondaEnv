@@ -1,0 +1,1 @@
+  conda create -n $1 python=3.9 pip -y

@@ -1,0 +1,2 @@
+
+    awk -F ',' -v col=$1 '{x+=$col; next} END{print x/NR}' $2;

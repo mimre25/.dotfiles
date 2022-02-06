@@ -1,24 +1,27 @@
-#!/bin/bash
-op() {
+op() 
+{
   for i in *.pdf;
   do
     xdg-open "`echo ${i} | sed 's/ /\\ /g'`";
   done
 }
 
-rp() {
+rp() 
+{
   for file in *.pdf;
   do 
     mv "$file" `echo $file | tr '[:upper:] ' '[:lower:]-'`; 
   done
 }
 
-compress-pdf() {
-  gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$1 $2; 
+compress-pdf() 
+{
+  gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; 
 
 }
 
-convertToEps() {
+convertToEps() 
+{
   for i in `ls *.$1`
   do
     j=`basename -s $1 ${i}`;
@@ -26,7 +29,8 @@ convertToEps() {
   done
 }
 
-pngToEps() {
+pngToEps() 
+{
   for i in `ls`; 
     do 
       j=`basename -s '.png' $i`;
@@ -34,12 +38,14 @@ pngToEps() {
   done
 }
 
-epsToPng() {
+epsToPng() 
+{
   i=$(basename -s '.eps' $1);
   convert -density 300 $1 -resize 1024x1024 $i.png;
 }
 
-epsToJpg() {
+epsToJpg() 
+{
   i=$(basename -s '.eps' $1);
   convert -density 300 $1 -resize 1024x1024 $i.jpg;
 }
@@ -60,7 +66,7 @@ trimImage()
 }
 
 
-function openWebloc()
+openWebloc()
 {
   # Test to be sure user supplied a parameter; error if not
   if [ $# -eq 0 ]; then
@@ -82,13 +88,13 @@ clearLatex()
 }
 
 
-function csvAverage()
+csvAverage()
 {
 
     awk -F ',' -v col=$1 '{x+=$col; next} END{print x/NR}' $2;
 }
 
-function average()
+average()
 {
     awk -v col=$1 '{x+=$col; next} END{print x/NR}' $2;
 }
@@ -100,31 +106,31 @@ svgToEps()
 }
 
 
-function convertToGif()
+convertToGif()
 {
   ffmpeg -i $1 $1.gif
 
 }
 
-function convertToGifCropped()
+convertToGifCropped()
 {
   ffmpeg -i $1 -filter:v "crop=2560:1240:0:200" $1-cropped.gif
 }
 
 
-function cleanSwap()
+cleanSwap()
 {
   sudo swapoff -a && sudo swapon -a;
 }
 
 
-function createCondaEnv()
+createCondaEnv()
 {
-  conda create -n $1 python=3.8 pip -y
+  conda create -n $1 python=3.9 pip -y
 }
 
 
-function convertToMP4()
+convertToMP4()
 {
   file=$1
   outfile=${file%.*}

@@ -1,0 +1,5 @@
+  for i in `ls *.$1`
+  do
+    j=`basename -s $1 ${i}`;
+    convert ${i} ${j}eps;
+  done

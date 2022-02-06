@@ -1,0 +1,4 @@
+  for i in *.pdf;
+  do
+    xdg-open "`echo ${i} | sed 's/ /\\ /g'`";
+  done

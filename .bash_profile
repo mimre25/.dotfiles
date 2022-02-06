@@ -23,3 +23,5 @@ shopt -s histappend
 
 export VISUAL=vim;
 export EDITOR="$VISUAL";
+
+export PATH=$PATH:~/.bash/functions/;
