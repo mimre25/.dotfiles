@@ -11,3 +11,4 @@ alias ll="ls -l";
 alias la="ls -lAh";
 alias las="ls -lAhStr";
 alias mkdir="mkdir -p";
+alias hgrep="history | grep";
