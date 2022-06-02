@@ -1,0 +1,1 @@
+ssh -p 2200 -NL 1234:192.168.0.16:139 martin@vpn.gt-d.com
