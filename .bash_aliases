@@ -14,3 +14,4 @@ alias mkdir="mkdir -p";
 alias hgrep="history | grep";
 alias s4cmd="s4cmd --endpoint-url https://ams3.digitaloceanspaces.com";
 alias s5cmd="s5cmd --endpoint-url https://ams3.digitaloceanspaces.com";
+alias pfg="pip freeze | grep";

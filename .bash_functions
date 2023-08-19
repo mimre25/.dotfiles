@@ -126,7 +126,7 @@ cleanSwap()
 
 createCondaEnv()
 {
-  conda create -n $1 python=3.9 pip -y
+  conda create -n $1 python=3.11 pip -y
 }
 
 
