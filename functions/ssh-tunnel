@@ -36,4 +36,5 @@ USER=$(whoami)
 
 echo "Connecting as user $USER and forwarding $TARGET_HOST:$TARGET_PORT to localhost:$LOCAL_PORT ..."
 ssh -Cp2200 -NL $LOCAL_PORT:$TARGET_HOST:$TARGET_PORT $USER@vpn.gt-d.com
+#ssh -Cp22 -NL $LOCAL_PORT:$TARGET_HOST:$TARGET_PORT $USER@134.209.201.165
 
