@@ -92,5 +92,19 @@ require("lazy").setup({
         end
     },
     { "wsdjeg/vim-fetch" },
-    { 'akinsho/toggleterm.nvim', tag = "v2.9.0", config = true }
+    { 'akinsho/toggleterm.nvim', tag = "v2.9.0", config = true },
+    { "ThePrimeagen/vim-apm" },
+    { "mfussenegger/nvim-dap" },
+    { "rcarriga/nvim-dap-ui"},
+    { "mfussenegger/nvim-dap-python" }
+
+
+
+    
+
+	--https://github.com/mfussenegger/nvim-dap-python
+	--https://github.com/rcarriga/nvim-dap-ui
+	--https://dev.to/miguelcrespo/how-to-debug-like-a-pro-using-neovim-45l8
+	--https://microsoft.github.io/debug-adapter-protocol/implementors/adapters/
+	--https://github.com/mfussenegger/nvim-dap
 })
