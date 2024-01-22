@@ -43,7 +43,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 --end)
 
 
-
 -- mine
 -- go back
 vim.keymap.set("n", "gb", "<C-o>")
