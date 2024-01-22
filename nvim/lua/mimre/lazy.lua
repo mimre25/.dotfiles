@@ -96,15 +96,8 @@ require("lazy").setup({
     { "ThePrimeagen/vim-apm" },
     { "mfussenegger/nvim-dap" },
     { "rcarriga/nvim-dap-ui"},
-    { "mfussenegger/nvim-dap-python" }
+    { "mfussenegger/nvim-dap-python" },
+    { "folke/neodev.nvim", opts = {} }
 
 
-
-    
-
-	--https://github.com/mfussenegger/nvim-dap-python
-	--https://github.com/rcarriga/nvim-dap-ui
-	--https://dev.to/miguelcrespo/how-to-debug-like-a-pro-using-neovim-45l8
-	--https://microsoft.github.io/debug-adapter-protocol/implementors/adapters/
-	--https://github.com/mfussenegger/nvim-dap
 })
