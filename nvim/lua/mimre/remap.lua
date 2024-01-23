@@ -43,7 +43,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 --end)
 
 
-
 -- mine
 -- go back
 vim.keymap.set("n", "gb", "<C-o>")
@@ -63,5 +62,20 @@ vim.keymap.set("n", "<leader> <leader> <leader>", function()
     vim.cmd("so ~/nvim/init.lua")
 end)
 
+
+
+
+-- resize windows
+vim.keymap.set("n", "<M-l>", ":vertical resize +3<CR>")
+vim.keymap.set("n", "<M-h>", ":vertical resize -3<CR>")
+vim.keymap.set("n", "<M-j>",  ":resize +3<CR>")
+vim.keymap.set("n", "<M-k>", ":resize -3<CR>")
+
+
+-- move in insert mode
+vim.keymap.set("i", "<C-J>", "<C-o>j")
+vim.keymap.set("i", "<C-K>", "<C-o>k")
+vim.keymap.set("i", "<C-H>", "<C-o>h")
+vim.keymap.set("i", "<C-L>", "<C-o>l")
 
 
