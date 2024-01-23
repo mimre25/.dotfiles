@@ -43,7 +43,7 @@ require("lazy").setup({
     { "theprimeagen/harpoon" },
     { "theprimeagen/refactoring.nvim" },
     { "mbbill/undotree" },
-    --("tpope/vim-fugitive")
+    {"tpope/vim-fugitive"}, 
     { "nvim-treesitter/nvim-treesitter-context" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
