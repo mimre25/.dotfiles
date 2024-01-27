@@ -20,7 +20,26 @@ require('mason-lspconfig').setup({
 })
 local lspconfig = require('lspconfig')
 
---lspconfig.ansiblels.setup {}
+lspconfig.ansiblels.setup {
+  ansible = {
+    ansible = {
+      path = "ansible"
+    },
+    executionEnvironment = {
+      enabled = false
+    },
+    python = {
+      interpreterPath = "/home/martin/micromamba/bin/python"
+    },
+    validation = {
+      enabled = false,
+      lint = {
+        enabled = false,
+        path = "ansible-lint"
+      }
+    }
+  }
+}
 lspconfig.rust_analyzer.setup {}
 lspconfig.pylsp.setup {}
 --lspconfig.pyright.setup {

@@ -97,7 +97,7 @@ require("lazy").setup({
     { "mfussenegger/nvim-dap" },
     { "rcarriga/nvim-dap-ui"},
     { "mfussenegger/nvim-dap-python" },
-    { "folke/neodev.nvim", opts = {} }
-
+    { "folke/neodev.nvim", opts = {} },
+    { "pearofducks/ansible-vim" }
 
 })
