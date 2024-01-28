@@ -43,7 +43,7 @@ require("lazy").setup({
     { "theprimeagen/harpoon" },
     { "theprimeagen/refactoring.nvim" },
     { "mbbill/undotree" },
-    {"tpope/vim-fugitive"}, 
+    { "tpope/vim-fugitive" },
     { "nvim-treesitter/nvim-treesitter-context" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
@@ -92,12 +92,26 @@ require("lazy").setup({
         end
     },
     { "wsdjeg/vim-fetch" },
-    { 'akinsho/toggleterm.nvim', tag = "v2.9.0", config = true },
+    { 'akinsho/toggleterm.nvim',     tag = "v2.9.0", config = true },
     { "ThePrimeagen/vim-apm" },
     { "mfussenegger/nvim-dap" },
-    { "rcarriga/nvim-dap-ui"},
+    { "rcarriga/nvim-dap-ui" },
     { "mfussenegger/nvim-dap-python" },
-    { "folke/neodev.nvim", opts = {} },
-    { "pearofducks/ansible-vim" }
+    { "folke/neodev.nvim",           opts = {} },
+    { "pearofducks/ansible-vim" },
+
+
+    { "numToStr/Comment.nvim" }, -- allow commenting lines easily
+    { -- test runner
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+
+            -- adapters
+            "nvim-neotest/neotest-python"
+        }
+    },
 
 })
