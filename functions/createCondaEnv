@@ -1,1 +1,1 @@
-  conda create -n $1 python=3.12 pip -y
+  micromamba create -n $1 python=3.12 pip -y
