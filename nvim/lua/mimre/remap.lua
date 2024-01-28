@@ -45,7 +45,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- mine
 -- go back
-vim.keymap.set("n", "gb", "<C-o>")
+vim.keymap.set("n", "b", "<C-o>")
 -- remap ESC in terminal to CTRL-\
 vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 
