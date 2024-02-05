@@ -114,4 +114,7 @@ require("lazy").setup({
         }
     },
 
+    -- easily save macros
+     { "jesseleite/nvim-macroni" },
+
 })

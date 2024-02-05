@@ -131,6 +131,7 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 export TOX_DISCOVER="/home/martin/micromamba/envs/py37/bin/ /home/martin/micromamba/envs/py38/bin/ /home/martin/micromamba/envs/py39/bin/ /home/martin/micromamba/envs/py310/bin/ /home/martin/micromamba/envs/py311/bin/ "
 
+
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
 export MAMBA_EXE='/home/martin/.local/bin/micromamba';
@@ -144,7 +145,6 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
-
 antigen bundle esc/conda-zsh-completion
 antigen apply
 
@@ -156,6 +156,7 @@ alias vim!=/usr/bin/vim;
 
 export PATH=$PATH:/home/martin/.cargo/bin
 export PATH=$PATH:/home/martin/Tools/nvim-linux64/bin
+export PATH=$PATH:/home/martin/micromamba/bin
 
 find_in_micromamba_env(){
     micromamba env list | grep "  ${@}" >/dev/null 2>/dev/null
@@ -170,5 +171,4 @@ post_cd_hook() {
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ post_cd_hook; }
 
-
-source .env
+source ~/.env

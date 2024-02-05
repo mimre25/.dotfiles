@@ -58,12 +58,7 @@ vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 
 
 -- reload nvim config
-vim.keymap.set("n", "<leader> <leader> <leader>", function()
-    vim.cmd("so ~/nvim/init.lua")
-end)
-
-
-
+-- TODO find a way to reaload neovim config
 
 -- resize windows
 vim.keymap.set("n", "<M-l>", ":vertical resize +3<CR>")
@@ -78,4 +73,6 @@ vim.keymap.set("i", "<C-K>", "<C-o>k")
 vim.keymap.set("i", "<C-H>", "<C-o>h")
 vim.keymap.set("i", "<C-L>", "<C-o>l")
 
-
+-- macro remappings
+vim.keymap.set("n", "Q", "@qj") -- repeat macro q below
+vim.keymap.set("x", "Q", ":norm @q<CR>") -- repeat macro q on all selected lines
