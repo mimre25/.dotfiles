@@ -115,6 +115,8 @@ require("lazy").setup({
     },
 
     -- easily save macros
-     { "jesseleite/nvim-macroni" },
+    { "jesseleite/nvim-macroni" },
 
+    -- 3-way diffs and what not
+    { "sindrets/diffview.nvim" },
 })
