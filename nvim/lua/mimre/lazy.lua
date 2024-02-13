@@ -97,12 +97,13 @@ require("lazy").setup({
     { "mfussenegger/nvim-dap" },
     { "rcarriga/nvim-dap-ui" },
     { "mfussenegger/nvim-dap-python" },
+    { "rcarriga/cmp-dap" },
     { "folke/neodev.nvim",           opts = {} },
     { "pearofducks/ansible-vim" },
 
 
     { "numToStr/Comment.nvim" }, -- allow commenting lines easily
-    { -- test runner
+    {                            -- test runner
         "nvim-neotest/neotest",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -119,4 +120,11 @@ require("lazy").setup({
 
     -- 3-way diffs and what not
     { "sindrets/diffview.nvim" },
+
+
+    -- code sharing
+    { "mistricky/code-link.nvim" },
+    -- { dir= "~/workspace/code-link.nvim",
+    --     -- name="code-link.nvim",
+    --     },
 })
