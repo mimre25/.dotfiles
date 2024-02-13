@@ -8,6 +8,6 @@ require("neotest").setup({
 vim.keymap.set("n", "<leader>rt", function()
     local neotest = require("neotest")
     neotest.summary.open();
-    neotest.run.run();
+    neotest.run.run(vim.fn.getcwd());
     vim.cmd({cmd = "wincmd", args = {"l"}});
 end)
