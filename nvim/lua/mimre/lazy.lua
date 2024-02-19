@@ -47,6 +47,8 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter-context" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
+    { 'hrsh7th/cmp-cmdline' },
+    { 'hrsh7th/nvim-cmp' },
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = "v3.x",
@@ -55,8 +57,8 @@ require("lazy").setup({
             { 'neovim/nvim-lspconfig' },
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },
+            -- Autocompletion
             --
-            --            -- Autocompletion
             { 'hrsh7th/nvim-cmp' },
             { 'hrsh7th/cmp-buffer' },
             { 'hrsh7th/cmp-path' },
@@ -124,7 +126,13 @@ require("lazy").setup({
 
     -- code sharing
     { "mistricky/code-link.nvim" },
-    -- { dir= "~/workspace/code-link.nvim",
-    --     -- name="code-link.nvim",
-    --     },
+
+    -- startup jokes
+    -- { dir = "~/workspace/joke.nvim", },
+    { "mimre25/jokes.nvim"},
+
+    -- pretend folders are buffers
+    {
+        'stevearc/oil.nvim',
+    },
 })
