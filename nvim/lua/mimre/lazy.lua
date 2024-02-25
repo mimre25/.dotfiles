@@ -6,16 +6,16 @@ require("lazy").setup({
     "folke/which-key.nvim",
     "folke/neodev.nvim",
     {
-        'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
+        dependencies = { "nvim-lua/plenary.nvim" }
     },
 
     {
-        'rose-pine/neovim',
-        name = 'rose-pine',
+        "rose-pine/neovim",
+        name = "rose-pine",
         config = function()
-            vim.cmd('colorscheme rose-pine')
+            vim.cmd("colorscheme rose-pine")
         end
     },
 
@@ -32,10 +32,10 @@ require("lazy").setup({
     },
 
     {
-        'nvim-treesitter/nvim-treesitter',
+        "nvim-treesitter/nvim-treesitter",
         tag = "v0.9.1",
         build = function()
-            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
             ts_update()
         end,
     },
@@ -47,33 +47,33 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter-context" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
-    { 'hrsh7th/cmp-cmdline' },
-    { 'hrsh7th/nvim-cmp' },
+    { "hrsh7th/cmp-cmdline" },
+    { "hrsh7th/nvim-cmp" },
     {
-        'VonHeikemen/lsp-zero.nvim',
+        "VonHeikemen/lsp-zero.nvim",
         branch = "v3.x",
         dependencies = {
             -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
+            { "neovim/nvim-lspconfig" },
+            { "williamboman/mason.nvim" },
+            { "williamboman/mason-lspconfig.nvim" },
             -- Autocompletion
             --
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
+            { "hrsh7th/nvim-cmp" },
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-path" },
             {
-                'saadparwaiz1/cmp_luasnip',
+                "saadparwaiz1/cmp_luasnip",
                 dependencies = {
-                    'L3MON4D3/LuaSnip'
+                    "L3MON4D3/LuaSnip"
                 }
             },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-nvim-lua" },
             --
             --            -- Snippets
-            --            { 'L3MON4D3/LuaSnip' },
-            { 'rafamadriz/friendly-snippets' },
+            --            { "L3MON4D3/LuaSnip" },
+            { "rafamadriz/friendly-snippets" },
         }
     },
 
@@ -94,7 +94,7 @@ require("lazy").setup({
         end
     },
     { "wsdjeg/vim-fetch" },
-    { 'akinsho/toggleterm.nvim',     tag = "v2.9.0", config = true },
+    { "akinsho/toggleterm.nvim",     tag = "v2.9.0", config = true },
     { "ThePrimeagen/vim-apm" },
     { "mfussenegger/nvim-dap" },
     { "rcarriga/nvim-dap-ui" },
@@ -133,6 +133,6 @@ require("lazy").setup({
 
     -- pretend folders are buffers
     {
-        'stevearc/oil.nvim',
+        "stevearc/oil.nvim",
     },
 })
