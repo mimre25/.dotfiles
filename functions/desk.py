@@ -15,22 +15,14 @@ if mode == "stand":
 elif mode == "sit":
     height = SIT_HEIGHT
 else:
-    raise Exception("Unknown Mode")
+    try:
+        height = int(mode)
+    except:
+        raise Exception(f"Unknown Mode {mode}")
 
 
-resp = requests.post(f"http://megadesk.local/number/megadesk_height__cm_/set?value={height}", {
-    "credentials": "omit",
-    "headers": {
-        "Accept": "*/*",
-        "Content-Type": "text/plain;charset=UTF-8",
-        "Pragma": "no-cache",
-        "Cache-Control": "no-cache"
-    },
-    "referrer": "http://megadesk.local/",
-    "body": "true",
-    "method": "POST",
-    "mode": "cors"
-})
+resp = requests.post(f"http://megadesk.local/number/megadesk_height__cm_/set?value={height}")
+
 if resp.status_code != 200:
     print(resp)
     print(resp.text)
