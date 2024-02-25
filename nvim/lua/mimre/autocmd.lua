@@ -10,10 +10,33 @@
 
 
 vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = {"*"},
+    pattern = { "*" },
     callback = function()
         if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
-            vim.api.nvim_exec("normal! g'\"",false)
+            vim.api.nvim_exec("normal! g'\"", false)
         end
     end
 })
+
+-- autocmd to go to github when using `gf` in lazy.lua
+-- start
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = { "*lazy.lua" },
+    callback = function()
+        vim.keymap.set("n", "gf", function()
+            vim.api.nvim_exec('normal! yi"', false)
+            local name = vim.fn.getreg('"')
+            local url = "https://github.com/" .. name
+            os.execute("xdg-open " .. url)
+        end)
+    end
+})
+
+vim.api.nvim_create_autocmd("BufLeave", {
+    pattern = { "*lazy.lua" },
+    callback = function()
+        vim.keymap.del("n", "gf")
+    end
+})
+-- end
+-- autocmd to go to github when using `gf` in lazy.lua
