@@ -165,10 +165,12 @@ find_in_micromamba_env(){
 post_cd_hook() { 
     env_name=$(basename $(pwd))
     if find_in_micromamba_env ${env_name}; then
+        if [[ -z "${TMUX}" ]]; then
+            tmux new-session -A -s ${env_name}
+        fi
         micromamba activate ${env_name}
     fi
 }
-autoload -U add-zsh-hook
-add-zsh-hook -Uz chpwd (){ post_cd_hook; }
+function chpwd(){ post_cd_hook; }
 
 source ~/.env
