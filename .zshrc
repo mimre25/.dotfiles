@@ -171,6 +171,6 @@ post_cd_hook() {
         micromamba activate ${env_name}
     fi
 }
-function chpwd(){ post_cd_hook; }
 
+add-zsh-hook chpwd post_cd_hook;
 source ~/.env
