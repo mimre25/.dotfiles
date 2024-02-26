@@ -4,7 +4,7 @@ import requests
 import sys
 
 
-STAND_HEIGHT = 95
+STAND_HEIGHT = 98
 SIT_HEIGHT = 60
 
 
