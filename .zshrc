@@ -174,3 +174,18 @@ post_cd_hook() {
 
 add-zsh-hook chpwd post_cd_hook;
 source ~/.env
+
+if [[ -n "${TMUX}" ]]; then
+    # Prevent CTRL+D to send EOF to exit terminal when in tmux
+    setopt IGNORE_EOF;
+fi
+
+ctrl_d() {
+    if [[ -n "${TMUX}" ]]; then 
+        tmux detach; 
+    else 
+        exit;
+    fi
+}
+zle -N ctrl_d; # register as "widget" 
+bindkey '^D' ctrl_d;
