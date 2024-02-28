@@ -189,3 +189,8 @@ ctrl_d() {
 }
 zle -N ctrl_d; # register as "widget" 
 bindkey '^D' ctrl_d;
+
+
+## automatically activate micromamba envs when starting a new terminal
+# for example when opening a new tmux pane or window
+post_cd_hook;
