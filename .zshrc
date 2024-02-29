@@ -34,7 +34,7 @@ ZSH_THEME="robbyrussell"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -59,7 +59,8 @@ ZSH_THEME="robbyrussell"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
+HISTSIZE=1000000
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -69,8 +70,9 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf conda-zsh-completion)
-
+plugins=(git fzf command-not-found colored-man-pages timer conda-zsh-completion) 
+TIMER_FORMAT='[%d]';
+TIMER_PRECISION=2
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -194,3 +196,16 @@ bindkey '^D' ctrl_d;
 ## automatically activate micromamba envs when starting a new terminal
 # for example when opening a new tmux pane or window
 post_cd_hook;
+
+
+flip() {
+    command=$(history | tail -n1 | cut -d ' ' -f '6-');
+    num_args=$(($(echo ${command} | tr -c -d ' ' | wc -m) + 1));
+    base_command=$(echo ${command} | cut -d ' ' -f -$(( num_args - 2)));
+    last_two_args=$(echo ${command} | cut -d ' ' -f $(( num_args - 1))-);
+    last_arg=$(echo ${last_two_args} | awk '{print $2}');
+    penultimate_arg=$(echo ${last_two_args} | awk '{print $1}');
+    flipped_command=($(echo "${base_command} ${last_arg} ${penultimate_arg}"));
+    echo ${flipped_command};
+    "${flipped_command[@]}";
+}
