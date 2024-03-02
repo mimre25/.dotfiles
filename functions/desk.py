@@ -5,7 +5,7 @@ import sys
 
 
 STAND_HEIGHT = 95
-SIT_HEIGHT = 60
+SIT_HEIGHT = 60.2
 
 
 mode = sys.argv[1]
@@ -16,7 +16,7 @@ elif mode == "sit":
     height = SIT_HEIGHT
 else:
     try:
-        height = int(mode)
+        height = float(mode)
     except:
         raise Exception(f"Unknown Mode {mode}")
 
