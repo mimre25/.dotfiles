@@ -1,6 +1,7 @@
 [user]
     name = Martin Imre
     email = user@example.com
+    signingKey = ~/.ssh/id_rsa
 
 [core]
     editor = nvim
