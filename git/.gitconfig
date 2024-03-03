@@ -4,6 +4,9 @@
 [core]
     editor = nvim
 
+[gpg]
+    format = ssh
+
 [includeIf "hasconfig:remote.*.url:git@work.example.com:*/**"]
     path = ~/.gitconfig-work
 
