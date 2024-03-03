@@ -1,6 +1,7 @@
 [user]
-	name = Martin Imre
-	email = user@example.com
+    name = Martin Imre
+    email = user@example.com
+
 [core]
     editor = nvim
 
@@ -10,3 +11,5 @@
 [includeIf "hasconfig:remote.*.url:git@work.example.com:*/**"]
     path = ~/.gitconfig-work
 
+[pull]
+    rebase = false
