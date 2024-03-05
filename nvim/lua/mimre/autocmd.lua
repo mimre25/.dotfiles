@@ -11,9 +11,14 @@
 
 vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = { "*" },
-    callback = function()
-        if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
-            vim.api.nvim_exec("normal! g'\"", false)
+    callback = function(data)
+        -- wanna start in first line when editing a commit message
+        local is_git_commit = data.file:match(".git/COMMIT_EDITMSG$")
+        if is_git_commit == nil then
+            vim.api.nvim_notify(data.file, vim.log.levels.INFO, {})
+            if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+                vim.api.nvim_exec("normal! g'\"", false)
+            end
         end
     end
 })
