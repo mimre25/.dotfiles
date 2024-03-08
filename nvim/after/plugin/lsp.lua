@@ -29,7 +29,7 @@ lspconfig.ansiblels.setup {
       enabled = false
     },
     python = {
-      interpreterPath = "/home/martin/micromamba/bin/python"
+      interpreterPath = "/home/martin/micromamba/envs/ansible/bin/python"
     },
     validation = {
       enabled = false,
