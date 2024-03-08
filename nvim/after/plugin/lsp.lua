@@ -82,6 +82,9 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>grr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-q>", function() vim.lsp.buf.signature_help() end, opts)
+    -- Show diagnostics
+    vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    vim.keymap.set('n', '<leader>Q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 end)
 
 lsp.setup()
