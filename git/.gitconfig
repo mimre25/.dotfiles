@@ -8,4 +8,4 @@
     rebase = false
 
 [include]
-    path = ~/.dotfiles/.dotfiles-private/git/.gitconfig
+    path = ~/.private/git/.gitconfig
