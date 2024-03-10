@@ -1,16 +1,11 @@
-[user]
-    name = Martin Imre
-    email = user@example.com
-    signingKey = ~/.ssh/id_rsa
-
 [core]
     editor = nvim
 
 [gpg]
     format = ssh
 
-[includeIf "hasconfig:remote.*.url:git@work.example.com:*/**"]
-    path = ~/.gitconfig-work
-
 [pull]
     rebase = false
+
+[include]
+    path = ~/.dotfiles-private/git/.gitconfig
