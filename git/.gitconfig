@@ -1,6 +1,9 @@
 [core]
     editor = nvim
 
+[commit]
+    gpgsign = true
+
 [gpg]
     format = ssh
 
@@ -9,3 +12,4 @@
 
 [include]
     path = ~/.private/git/.gitconfig
+
