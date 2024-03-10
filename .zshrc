@@ -175,7 +175,10 @@ post_cd_hook() {
 }
 
 add-zsh-hook chpwd post_cd_hook;
-source ~/.env
+if [ -f ~/.env ]; then
+    . ~/.env
+fi
+
 
 if [[ -n "${TMUX}" ]]; then
     # Prevent CTRL+D to send EOF to exit terminal when in tmux
