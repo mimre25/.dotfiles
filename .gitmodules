@@ -1,0 +1,3 @@
+[submodule ".dotfiles-private"]
+	path = .dotfiles-private
+	url = git@github.com:mimre25/.dotfiles-private.git
