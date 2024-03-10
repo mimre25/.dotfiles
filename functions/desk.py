@@ -6,14 +6,22 @@ import sys
 
 STAND_HEIGHT = 98
 SIT_HEIGHT = 60.2
+MIN_HEIGHT = 58.45
+MAX_HEIGHT = 118.74
+
+
+MODES = {
+    "stand": STAND_HEIGHT,
+    "sit": SIT_HEIGHT,
+    "max": MAX_HEIGHT,
+    "min": MIN_HEIGHT
+}
 
 
 mode = sys.argv[1]
 
-if mode == "stand":
-    height = STAND_HEIGHT
-elif mode == "sit":
-    height = SIT_HEIGHT
+if mode in MODES:
+    height = MODES[mode]
 else:
     try:
         height = float(mode)
