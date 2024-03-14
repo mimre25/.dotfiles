@@ -161,7 +161,7 @@ export PATH=$PATH:/home/martin/Tools/nvim-linux64/bin
 export PATH=$PATH:/home/martin/micromamba/bin
 
 find_in_micromamba_env(){
-    micromamba env list | grep "  ${@}" >/dev/null 2>/dev/null
+    micromamba env list | grep "  ${@} " >/dev/null 2>/dev/null
 }
 
 post_cd_hook() { 
