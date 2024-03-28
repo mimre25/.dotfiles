@@ -188,7 +188,8 @@ fi
 ctrl_d() {
     if [[ -n "${TMUX}" ]]; then 
         num_panes=$(tmux list-panes | wc -l);
-        if [[ $num_panes -eq 1 ]]; then
+        num_windows=$(tmux list-windows | wc -l);
+        if [[ $num_panes -eq 1 ]] && [[ $num_windows -eq 1 ]]; then
             tmux detach;
         else
             exit;
