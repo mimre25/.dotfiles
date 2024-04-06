@@ -129,7 +129,7 @@ require("lazy").setup({
 
     -- startup jokes
     -- { dir = "~/workspace/joke.nvim", },
-    { "mimre25/jokes.nvim"},
+    { "mimre25/jokes.nvim" },
 
     -- pretend folders are buffers
     {
