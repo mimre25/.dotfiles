@@ -156,4 +156,12 @@ require("lazy").setup({
             vim.api.nvim_create_user_command("PeekClose", peek.close, {})
         end,
     },
+
+    -- keep track of yanks
+    {
+        "ptdewey/yankbank-nvim",
+        config = function()
+            require('yankbank').setup()
+        end,
+    }
 })
