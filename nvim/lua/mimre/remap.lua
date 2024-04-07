@@ -68,10 +68,10 @@ vim.keymap.set("n", "<M-k>", ":resize -3<CR>")
 
 
 -- move in insert mode
-vim.keymap.set("i", "<C-J>", "<C-o>j")
-vim.keymap.set("i", "<C-K>", "<C-o>k")
-vim.keymap.set("i", "<C-H>", "<C-o>h")
-vim.keymap.set("i", "<C-L>", "<C-o>l")
+-- vim.keymap.set("i", "<C-J>", "<C-o>j")
+-- vim.keymap.set("i", "<C-K>", "<C-o>k")
+-- vim.keymap.set("i", "<C-H>", "<C-o>h")
+-- vim.keymap.set("i", "<C-L>", "<C-o>l")
 
 -- macro remappings
 vim.keymap.set("n", "Q", "@qj") -- repeat macro q below
