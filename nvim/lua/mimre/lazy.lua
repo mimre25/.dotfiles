@@ -18,7 +18,6 @@ require("lazy").setup({
             vim.cmd("colorscheme rose-pine")
         end
     },
-
     {
         "folke/trouble.nvim",
         config = function()
@@ -98,7 +97,7 @@ require("lazy").setup({
         end
     },
     { "wsdjeg/vim-fetch" },
-    { "akinsho/toggleterm.nvim",     tag = "v2.9.0", config = true },
+    { "akinsho/toggleterm.nvim", tag = "v2.9.0", config = true },
     { "ThePrimeagen/vim-apm" },
     { "mfussenegger/nvim-dap" },
     {
