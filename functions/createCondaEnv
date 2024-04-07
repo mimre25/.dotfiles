@@ -1,1 +1,7 @@
-  micromamba create -n $1 python=3.12 pip -y
+ 
+if [ "$#" -eq 0 ]; then
+    micromamba create -n $(basename $(pwd)) python=3.12 pip -y
+else 
+    micromamba create -n $1 python=3.12 pip -y
+fi
+
