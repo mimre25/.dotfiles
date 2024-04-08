@@ -18,7 +18,6 @@ require("lazy").setup({
             vim.cmd("colorscheme rose-pine")
         end
     },
-
     {
         "folke/trouble.nvim",
         config = function()
@@ -40,7 +39,11 @@ require("lazy").setup({
         end,
     },
     { "nvim-treesitter/playground" },
-    { "theprimeagen/harpoon" },
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
     { "theprimeagen/refactoring.nvim" },
     { "mbbill/undotree" },
     { "tpope/vim-fugitive" },
@@ -94,10 +97,13 @@ require("lazy").setup({
         end
     },
     { "wsdjeg/vim-fetch" },
-    { "akinsho/toggleterm.nvim",     tag = "v2.9.0", config = true },
+    { "akinsho/toggleterm.nvim", tag = "v2.9.0", config = true },
     { "ThePrimeagen/vim-apm" },
     { "mfussenegger/nvim-dap" },
-    { "rcarriga/nvim-dap-ui" },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
+    },
     { "mfussenegger/nvim-dap-python" },
     { "rcarriga/cmp-dap" },
     { "folke/neodev.nvim",           opts = {} },
@@ -130,10 +136,39 @@ require("lazy").setup({
 
     -- startup jokes
     -- { dir = "~/workspace/joke.nvim", },
-    { "mimre25/jokes.nvim"},
+    { "mimre25/jokes.nvim" },
 
     -- pretend folders are buffers
     {
         "stevearc/oil.nvim",
     },
+
+    -- markdown preview
+    {
+        -- need `deno` installed unfortunately :(
+        "toppair/peek.nvim",
+        event = { "VeryLazy" },
+        build = "deno task --quiet build:fast",
+        config = function()
+            local peek = require("peek")
+            peek.setup({ theme = "light", app = { "firefox", "-new-window" } })
+            vim.api.nvim_create_user_command("PeekOpen", peek.open, {})
+            vim.api.nvim_create_user_command("MarkdownPreview", function()
+                if peek.is_open() then
+                    peek.close()
+                else
+                    peek.open()
+                end
+            end, {})
+            vim.api.nvim_create_user_command("PeekClose", peek.close, {})
+        end,
+    },
+
+    -- keep track of yanks
+    {
+        "ptdewey/yankbank-nvim",
+        config = function()
+            require('yankbank').setup()
+        end,
+    }
 })

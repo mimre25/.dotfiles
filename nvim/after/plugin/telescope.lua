@@ -36,21 +36,21 @@ telescope.load_extension("fzf")
 local builtin = require('telescope.builtin')
 
 -- file
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-vim.keymap.set('n', '<leader>pg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>pgf', builtin.git_files, {})
-vim.keymap.set('n', '<leader>ps', builtin.grep_string, {})
+vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = "builtin.find_files" })
+vim.keymap.set('n', '<leader>pg', builtin.live_grep, { desc = "builtin.live_grep" })
+-- vim.keymap.set('n', '<leader>pgf', builtin.git_files, {desc= "builtin.git_files"})
+vim.keymap.set('n', '<leader>ps', builtin.grep_string, { desc = "builtin.grep_string" })
 
 -- commands
-vim.keymap.set('n', '<leader>pc', builtin.commands, {})
-vim.keymap.set('n', '<leader>pr', builtin.command_history, {})
+vim.keymap.set('n', '<leader>pc', builtin.commands, { desc = "builtin.commands" })
+vim.keymap.set('n', '<leader>pr', builtin.command_history, { desc = "builtin.command_history" })
 
 -- lsp
-vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
-vim.keymap.set('n', '<leader>gi', builtin.lsp_implementations, {})
+vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { desc = "builtin.lsp_references" })
+vim.keymap.set('n', '<leader>gi', builtin.lsp_implementations, { desc = "builtin.lsp_implementations" })
 
 -- treesitter
-vim.keymap.set('n', '<leader>sa', builtin.treesitter, {})
+vim.keymap.set('n', '<leader>sa', builtin.treesitter, { desc = "builtin.treesitter" })
 
 
-vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = "builtin.help_tags" })
