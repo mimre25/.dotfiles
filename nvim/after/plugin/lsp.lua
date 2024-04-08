@@ -21,7 +21,6 @@ require('mason-lspconfig').setup({
 local lspconfig = require('lspconfig')
 
 lspconfig.ansiblels.setup {
-  ansible = {
     ansible = {
       path = "ansible"
     },
@@ -38,7 +37,6 @@ lspconfig.ansiblels.setup {
         path = "ansible-lint"
       }
     }
-  }
 }
 lspconfig.rust_analyzer.setup {}
 lspconfig.pylsp.setup {}
