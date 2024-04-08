@@ -113,7 +113,8 @@ require("lazy").setup({
             "nvim-treesitter/nvim-treesitter",
 
             -- adapters
-            "nvim-neotest/neotest-python"
+            "nvim-neotest/neotest-python",
+            "olimorris/neotest-phpunit",
         }
     },
 

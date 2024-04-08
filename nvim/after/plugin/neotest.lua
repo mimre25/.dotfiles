@@ -2,7 +2,15 @@
 require("neotest").setup({
     adapters = {
         require("neotest-python")({}),
-    }
+        require("neotest-phpunit")({
+            phpunit_cmd = function()
+                return {"vendor/bin/sail","test", "--parallel"}
+            end
+        }),
+    },
+    running = {
+      concurrent = false
+    },
 })
 
 vim.keymap.set("n", "<leader>rt", function()
