@@ -42,6 +42,39 @@ lspconfig.ansiblels.setup {
 }
 lspconfig.rust_analyzer.setup {}
 lspconfig.pylsp.setup {}
+lspconfig.vuels.setup {
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+  -- on_attach = function(client, bufnr)
+  --   local opts = { buffer = bufnr, remap = false }
+  --
+  --   vim.keymap.set("n", "gf", function()
+  --       vim.api.nvim_exec("normal! yi'", false)
+  --       local name = vim.fn.getreg('"')
+  --       local file = name: gsub("@", "src")
+  --       vim.api.nvim_command(":e "..file )
+  --       end, opts)
+--   end
+  }
+-- lspconfig.tsserver.setup{
+--   init_options = {
+--     plugins = {
+--       {
+--         name = "@vue/typescript-plugin",
+--         location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+--         languages = {"javascript", "typescript", "vue"},
+--       },
+--     },
+--   },
+--   filetypes = {
+--     "javascript",
+--     "typescript",
+--     "vue",
+--   },
+-- }
+
+-- lspconfig.volar.setup{
+--   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+-- }
 --lspconfig.pyright.setup {
 --    on_attach = on_attach,
 --    capabilities = capabilities,
