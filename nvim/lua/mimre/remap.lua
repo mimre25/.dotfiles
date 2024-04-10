@@ -61,10 +61,10 @@ vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 -- TODO find a way to reaload neovim config
 
 -- resize windows
-vim.keymap.set("n", "<M-l>", ":vertical resize +3<CR>")
-vim.keymap.set("n", "<M-h>", ":vertical resize -3<CR>")
-vim.keymap.set("n", "<M-j>",  ":resize +3<CR>")
-vim.keymap.set("n", "<M-k>", ":resize -3<CR>")
+vim.keymap.set("n", "<M-a-l>", ":vertical resize +3<CR>")
+vim.keymap.set("n", "<M-a-h>", ":vertical resize -3<CR>")
+vim.keymap.set("n", "<M-a-j>",  ":resize +3<CR>")
+vim.keymap.set("n", "<M-a-k>", ":resize -3<CR>")
 
 
 -- move in insert mode
