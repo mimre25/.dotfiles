@@ -218,3 +218,18 @@ flip() {
     echo ${flipped_command};
     "${flipped_command[@]}";
 }
+
+
+_notes() {
+    if [[ -z "${TMUX}" ]]; then
+        tmux new-session -A -s notes -c ~ vim notes.txt;
+    else
+        tmux switch-client -t notes;
+        if [[ $? -eq 1 ]]; then
+            tmux new-session -d -s notes -c ~ vim notes.txt;
+            tmux switch-client -t notes;
+        fi
+    fi
+
+}
+alias notes=_notes;
