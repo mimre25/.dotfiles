@@ -13,6 +13,7 @@
   "code-link.nvim": { "branch": "main", "commit": "b34a455dda83b882201b971bb2bd655bdba0e377" },
   "diffview.nvim": { "branch": "main", "commit": "3dc498c9777fe79156f3d32dddd483b8b3dbd95f" },
   "friendly-snippets": { "branch": "main", "commit": "ea068f1becd91bcd4591fceb6420d4335e2e14d3" },
+  "git-conflict.nvim": { "branch": "main", "commit": "4c8e252b87d54d944c1e56bfb477f78b6fdaf661" },
   "harpoon": { "branch": "harpoon2", "commit": "da326d0438ac68dee9b6b62a734be940a8bd8405" },
   "inc-rename.nvim": { "branch": "main", "commit": "5e03e986625961d1fac296d1bf332a6510c3add6" },
   "jokes.nvim": { "branch": "master", "commit": "9c8ff93952e3c302f83bc693b0398da3622456be" },

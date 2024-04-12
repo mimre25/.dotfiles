@@ -169,5 +169,8 @@ require("lazy").setup({
         config = function()
             require('yankbank').setup()
         end,
-    }
+    },
+
+    -- handling diffs
+    { 'akinsho/git-conflict.nvim', version = "*", config = true },
 })
