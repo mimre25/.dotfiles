@@ -233,3 +233,9 @@ _notes() {
 
 }
 alias notes=_notes;
+
+
+## from https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
+alias path='echo -e ${PATH//:/\\n}'
+## from https://www.digitalocean.com/community/questions/what-are-your-favorite-bash-aliases
+alias sudo='sudo '
