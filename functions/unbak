@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-function unbak() {
-    file=$1;
-    mv ${file} ${file/%.bak/};
-} 
-
-unbak $@
