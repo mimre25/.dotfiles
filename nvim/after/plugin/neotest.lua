@@ -1,7 +1,9 @@
 
 require("neotest").setup({
     adapters = {
-        require("neotest-python")({}),
+        require("neotest-python")({
+            dap = { justMyCode = false }
+        }),
         require("neotest-phpunit")({
             phpunit_cmd = function()
                 return {"vendor/bin/sail","test", "--parallel"}
