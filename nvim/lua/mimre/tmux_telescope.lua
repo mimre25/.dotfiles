@@ -7,6 +7,7 @@ local utils = require("telescope.previewers.utils")
 local config = require("telescope.config").values
 
 local log = require("plenary.log"):new()
+-- log.level = 'debug'
 
 local M = {}
 
@@ -35,11 +36,23 @@ M.show_tmux_sessions = function(opts)
         previewer = previewers.new_buffer_previewer({
             title = "Tmux session",
             define_preview = function(self, entry)
+                local command = {
+                    "silent",
+                    "!tmux",
+                    "list-windows",
+                    "-t",
+                    entry.value.session_name,
+                }
+                local res = vim.api.nvim_exec2(vim.fn.join(command, " "), {output = true})
+                local windows = vim.fn.split(res.output, "\n")
+                log.debug('windows before', windows)
+                table.remove(windows, 1)
+                table.remove(windows, 1)
+                log.debug('windows', windows)
+
                 vim.api.nvim_buf_set_lines(self.state.bufnr, 0, 0, true,
-                    vim.tbl_flatten({ "#" .. entry.value.session_name, "", "```lua", vim.split(vim.inspect(entry.value),
-                        "\n"),
-                        "```" }))
-                utils.highlighter(self.state.bufnr, "markdown")
+                    vim.tbl_flatten({ "#" .. entry.value.session_name, "", windows }))
+                utils.highlighter(self.state.bufnr, "sh")
             end
         }),
         attach_mappings = function(prompt_bufnr)
