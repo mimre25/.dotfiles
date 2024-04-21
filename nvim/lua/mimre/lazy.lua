@@ -97,7 +97,6 @@ require("lazy").setup({
         end
     },
     { "wsdjeg/vim-fetch" },
-    { "akinsho/toggleterm.nvim", tag = "v2.9.0", config = true },
     { "mfussenegger/nvim-dap" },
     {
         "rcarriga/nvim-dap-ui",
