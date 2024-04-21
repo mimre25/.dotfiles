@@ -1,20 +1,38 @@
+[blame]
+    ignoreRevsFile = .git-blame-ignore-revs
+
 [core]
     editor = nvim
 
 [commit]
     gpgsign = true
 
+[diff]
+    submodule = log
+
 [gpg]
     format = ssh
-
-[pull]
-    rebase = false
-
-[include]
-    path = ~/.private/git/.gitconfig
 
 [merge]
     tool = nvim
 
 [mergetool "nvim"]
     cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+
+[pull]
+    rebase = false
+
+[rerere]
+    enabled = true
+
+[status]
+    submoduleSummary = true
+
+
+
+
+
+
+
+[include]
+    path = ~/.private/git/.gitconfig
