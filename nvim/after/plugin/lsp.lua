@@ -39,6 +39,7 @@ lspconfig.ansiblels.setup {
     }
 }
 lspconfig.rust_analyzer.setup {}
+lspconfig.marksman.setup {}
 lspconfig.pylsp.setup {}
 lspconfig.vuels.setup {
   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
