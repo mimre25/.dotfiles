@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-function bak() {
-    file=$1;
-    cp -r ${file} ${file}.bak;
-} 
-
-bak $@
