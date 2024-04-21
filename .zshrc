@@ -165,7 +165,8 @@ find_in_micromamba_env(){
 }
 
 post_cd_hook() { 
-    env_name=$(basename $(pwd))
+    env_name=$(echo $(basename $(pwd)) | sed 's/\./_/g')
+
     if find_in_micromamba_env ${env_name}; then
         if [[ -z "${TMUX}" ]]; then
             tmux new-session -A -s ${env_name}
