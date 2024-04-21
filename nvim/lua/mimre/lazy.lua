@@ -143,7 +143,7 @@ require("lazy").setup({
 
     -- markdown preview
     {
-        -- need `deno` installed unfortunately :(
+        -- need `deno` installed unfortunately :/
         "toppair/peek.nvim",
         event = { "VeryLazy" },
         build = "deno task --quiet build:fast",
@@ -172,4 +172,16 @@ require("lazy").setup({
 
     -- handling diffs
     { 'akinsho/git-conflict.nvim', version = "*", config = true },
+
+    {
+        "NStefan002/screenkey.nvim",
+        cmd = "Screenkey",
+        version = "*",
+        config = true,
+        lazy = true,
+    },
+    -- json exploration
+    { "Myzel394/jsonfly.nvim" },
+    -- { dir = "~/workspace/jsonfly.nvim" },
 })
+
