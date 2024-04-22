@@ -38,6 +38,7 @@ lspconfig.ansiblels.setup {
       }
     }
 }
+lspconfig.marksman.setup {}
 lspconfig.rust_analyzer.setup {}
 lspconfig.marksman.setup {}
 lspconfig.pylsp.setup {}
