@@ -42,6 +42,7 @@ lspconfig.marksman.setup {}
 lspconfig.rust_analyzer.setup {}
 lspconfig.marksman.setup {}
 lspconfig.pylsp.setup {}
+lspconfig.phpactor.setup{}
 lspconfig.vuels.setup {
   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
   -- on_attach = function(client, bufnr)
