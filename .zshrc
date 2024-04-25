@@ -240,3 +240,8 @@ alias notes=_notes;
 alias path='echo -e ${PATH//:/\\n}'
 ## from https://www.digitalocean.com/community/questions/what-are-your-favorite-bash-aliases
 alias sudo='sudo '
+
+
+
+alias gpsuf='git push --set-upstream fork $(git_current_branch)'
+
