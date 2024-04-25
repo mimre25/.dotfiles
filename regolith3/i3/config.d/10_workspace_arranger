@@ -9,6 +9,7 @@ workspace 1 output DP-2-8
 workspace 4 output DP-2-8
 workspace 6 output DP-2-8
 workspace 9 output DP-2-8
+workspace 11 output DP-2-8
 
 ## laptop monitor
 workspace 2 output eDP-1
@@ -24,3 +25,6 @@ assign [class="(?i)slack" title="Huddle.*"] 10
 assign [class="(?i)slack"] 2
 assign [class="(?i)lens"] 8
 assign [class="thunderbird"] 4
+assign [class="(?i)gimp.*"] 11
+
+
