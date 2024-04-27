@@ -46,7 +46,8 @@ function debug_arbitrary(opts)
         request = 'launch',
         module = module,
         args = args,
-        console = opts.console
+        console = opts.console,
+        justMyCode = false
     }
     load_dap().run(vim.tbl_extend('force', config, opts.config or {}))
 end
