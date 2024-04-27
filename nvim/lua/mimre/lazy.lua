@@ -12,13 +12,6 @@ require("lazy").setup({
     },
 
     {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        config = function()
-            vim.cmd("colorscheme rose-pine")
-        end
-    },
-    {
         "folke/trouble.nvim",
         config = function()
             require("trouble").setup {
@@ -194,5 +187,49 @@ require("lazy").setup({
         cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
         event = { "VeryLazy" },
         config = true,
-    }
-})
+    },
+
+    -- tets-coverage display
+    {
+        "andythigpen/nvim-coverage",
+        -- Optional: needed for PHP when using the cobertura parser
+        rocks = { 'lua-xmlreader' },
+        config = function()
+            require("coverage").setup()
+        end
+    },
+
+    -- colorschemes
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+    },
+    {
+        "folke/tokyonight.nvim",
+        opts = {},
+    },
+
+    { "catppuccin/nvim",      name = "catppuccin", },
+    { "rebelot/kanagawa.nvim" },
+    {
+        "baliestri/aura-theme",
+
+    },
+    {
+        "EdenEast/nightfox.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd([[colorscheme duskfox]])
+        end,
+    },
+    { "navarasu/onedark.nvim" },
+
+    { "bluz71/vim-nightfly-colors", name = "nightfly", },
+    { "bluz71/vim-moonfly-colors",  name = "moonfly", },
+
+    -- enough colorschemes
+}
+
+
+)
