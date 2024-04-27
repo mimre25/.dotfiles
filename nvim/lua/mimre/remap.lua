@@ -16,8 +16,9 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- next greatest remap ever : yank & put to/from clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
-vim.keymap.set({ "n", "v" }, "<leader>P", [["+P]])
+-- vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
+vim.keymap.set({ "n", "v" }, "<leader>pp", [["+p]])
+vim.keymap.set({ "n", "v" }, "<leader>pP", [["+P]])
 vim.keymap.set({ "n", "v" }, "<leader>pu", [[I<CR><ESC>k"+P]])
 vim.keymap.set({ "n", "v" }, "<leader>pd", [[A<CR><ESC>"+P]])
 
