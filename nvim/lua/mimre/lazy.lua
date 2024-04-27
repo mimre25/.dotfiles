@@ -176,6 +176,7 @@ require("lazy").setup({
     -- json exploration
     { "Myzel394/jsonfly.nvim" },
 
+    -- laravel
     {
         "adalessa/laravel.nvim",
         dependencies = {
