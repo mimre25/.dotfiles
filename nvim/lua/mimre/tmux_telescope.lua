@@ -7,10 +7,62 @@ local utils = require("telescope.previewers.utils")
 local config = require("telescope.config").values
 
 local log = require("plenary.log"):new()
--- log.level = 'debug'
+log.level = 'debug'
 
 local M = {}
 
+M.strip_nls = function(lines)
+    local res = {}
+    local last = nil
+    for _, line in pairs(lines) do
+        if not (last == "" and line == "") then
+            table.insert(res, line)
+        end
+
+        last = line
+    end
+    return res
+end
+
+M.capute_pane = function(session_name, win_id, pane)
+    log.debug(pane)
+    local pane_id = vim.fn.split(pane, ":")[1]
+    local command = {
+        "silent",
+        "!tmux",
+        "capture-pane",
+        "-t",
+        session_name .. ":" .. win_id .. "." .. pane_id,
+        "-p",
+    }
+    log.debug(command)
+    local res = vim.api.nvim_exec2(vim.fn.join(command, " "), { output = true })
+    res = vim.fn.split(res.output, "\n")
+    table.remove(res, 1)
+    table.remove(res, 1)
+    return pane_id, res
+end
+
+M.capute_panes = function(window, session_name)
+    local win_id = vim.fn.split(window, ":")[1]
+    local command = {
+        "silent",
+        "!tmux",
+        "list-panes",
+        "-t",
+        session_name .. ":" .. win_id,
+    }
+    local res = vim.api.nvim_exec2(vim.fn.join(command, " "), { output = true })
+    res = vim.fn.split(res.output, "\n")
+    table.remove(res, 1)
+    table.remove(res, 1)
+    local panes = {}
+    for _, pane in pairs(res) do
+        local pane_id, pane_content = M.capute_pane(session_name, win_id, pane)
+        panes[pane_id] = pane_content
+    end
+    return panes
+end
 
 M.show_tmux_sessions = function(opts)
     pickers.new(opts, {
@@ -43,15 +95,23 @@ M.show_tmux_sessions = function(opts)
                     "-t",
                     entry.value.session_name,
                 }
-                local res = vim.api.nvim_exec2(vim.fn.join(command, " "), {output = true})
+                local res = vim.api.nvim_exec2(vim.fn.join(command, " "), { output = true })
                 local windows = vim.fn.split(res.output, "\n")
-                log.debug('windows before', windows)
                 table.remove(windows, 1)
                 table.remove(windows, 1)
-                log.debug('windows', windows)
+                local preview = { "# " .. entry.value.session_name .. ":", windows }
+                for _, window in pairs(windows) do
+                    local win_id = vim.fn.split(window, ":")[1]
+                    local panes = M.capute_panes(window, entry.value.session_name)
 
-                vim.api.nvim_buf_set_lines(self.state.bufnr, 0, 0, true,
-                    vim.tbl_flatten({ "#" .. entry.value.session_name, "", windows }))
+                    log.debug("panes", #panes)
+                    for pane_id, pane in pairs(panes) do
+                        table.insert(preview, "#" .. entry.value.session_name .. ":" .. win_id .. "." .. pane_id)
+                        table.insert(preview, M.strip_nls(pane))
+                    end
+                end
+                log.debug(preview)
+                vim.api.nvim_buf_set_lines(self.state.bufnr, 0, 0, true, vim.tbl_flatten(preview))
                 utils.highlighter(self.state.bufnr, "sh")
             end
         }),
