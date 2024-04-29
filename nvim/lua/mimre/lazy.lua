@@ -25,7 +25,7 @@ require("lazy").setup({
 
     {
         "nvim-treesitter/nvim-treesitter",
-        tag = "v0.9.1",
+        tag = "v0.9.2",
         build = function()
             local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
             ts_update()
