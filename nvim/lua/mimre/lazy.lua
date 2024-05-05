@@ -104,6 +104,7 @@ require("lazy").setup({
     { "numToStr/Comment.nvim" }, -- allow commenting lines easily
     {                            -- test runner
         "nvim-neotest/neotest",
+        -- dir = "~/workspace/neotest",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "antoinemadec/FixCursorHold.nvim",
@@ -111,7 +112,12 @@ require("lazy").setup({
 
             -- adapters
             "nvim-neotest/neotest-python",
-            "olimorris/neotest-phpunit",
+            -- "olimorris/neotest-phpunit",
+            {
+                "mimre25/neotest-phpunit",
+                branch = "sail-support"
+            }
+            -- { dir = "~/workspace/neotest-phpunit" },
         }
     },
 
