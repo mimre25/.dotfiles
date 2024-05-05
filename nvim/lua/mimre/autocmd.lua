@@ -1,14 +1,3 @@
---local group = vim.api.nvim_create_augroup("TermConfig", { clear = true })
---vim.api.nvim_create_autocmd("TermOpen", {
---    callback = function()
---        vim.opt.nu = false
---        vim.opt.relativenumber = false
---        --vim.cmd("colorscheme default")
---    end,
---    group = group
---})
-
-
 vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = { "*" },
     callback = function(data)
