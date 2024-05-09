@@ -35,6 +35,10 @@ telescope.setup({
 })
 
 telescope.load_extension("fzf")
+telescope.load_extension("tmux")
+
+vim.keymap.set("n", "<leader>t", function() telescope.extensions.tmux.show_sessions() end)
+
 
 local builtin = require('telescope.builtin')
 

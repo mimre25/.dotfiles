@@ -248,6 +248,16 @@ require("lazy").setup({
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
         }
+    },
+
+
+    -- tmux session picker telescope
+    -- {
+    --     { dir = "~/workspace/tmux-telescope-plugin.nvim" }
+    -- },
+    {
+        'mimre25/tmux-telescope-picker.nvim',
+        dependencies = { 'nvim-telescope/telescope.nvim' } -- duh
     }
 }
 
