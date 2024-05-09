@@ -236,6 +236,19 @@ require("lazy").setup({
     { "bluz71/vim-moonfly-colors",  name = "moonfly", },
 
     -- enough colorschemes
+    --
+    --
+    -- highlighting todos
+
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    }
 }
 
 
