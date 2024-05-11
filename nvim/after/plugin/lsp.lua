@@ -1,6 +1,7 @@
 local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
@@ -22,74 +23,32 @@ local lspconfig = require('lspconfig')
 
 lspconfig.ansiblels.setup {
     ansible = {
-      path = "ansible"
+        path = "ansible"
     },
     executionEnvironment = {
-      enabled = false
+        enabled = false
     },
     python = {
-      interpreterPath = "/home/martin/micromamba/envs/ansible/bin/python"
+        interpreterPath = "/home/martin/micromamba/envs/ansible/bin/python"
     },
     validation = {
-      enabled = false,
-      lint = {
         enabled = false,
-        path = "ansible-lint"
-      }
+        lint = {
+            enabled = false,
+            path = "ansible-lint"
+        }
     }
 }
-lspconfig.marksman.setup {}
-lspconfig.rust_analyzer.setup {}
-lspconfig.marksman.setup {}
-lspconfig.pylsp.setup {}
-lspconfig.phpactor.setup{}
+lspconfig.sqls.setup { capabilities = capabilities }
+lspconfig.marksman.setup { capabilities = capabilities }
+lspconfig.rust_analyzer.setup { capabilities = capabilities }
+lspconfig.marksman.setup { capabilities = capabilities }
+lspconfig.pylsp.setup { capabilities = capabilities }
+lspconfig.phpactor.setup { capabilities = capabilities }
 lspconfig.vuels.setup {
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
-  -- on_attach = function(client, bufnr)
-  --   local opts = { buffer = bufnr, remap = false }
-  --
-  --   vim.keymap.set("n", "gf", function()
-  --       vim.api.nvim_exec("normal! yi'", false)
-  --       local name = vim.fn.getreg('"')
-  --       local file = name: gsub("@", "src")
-  --       vim.api.nvim_command(":e "..file )
-  --       end, opts)
---   end
-  }
--- lspconfig.tsserver.setup{
---   init_options = {
---     plugins = {
---       {
---         name = "@vue/typescript-plugin",
---         location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
---         languages = {"javascript", "typescript", "vue"},
---       },
---     },
---   },
---   filetypes = {
---     "javascript",
---     "typescript",
---     "vue",
---   },
--- }
-
--- lspconfig.volar.setup{
---   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
--- }
---lspconfig.pyright.setup {
---    on_attach = on_attach,
---    capabilities = capabilities,
---    settings = {
---        python = {
---            analysis = {
---                autoSearchPaths = true,
---                diagnosticMode = "workspace",
---                useLibraryCodeForTypes = true
---            }
---        }
---    }
---
---}
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+    capabilities = capabilities
+}
 
 
 lsp.set_preferences({
@@ -118,7 +77,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-q>", function() vim.lsp.buf.signature_help() end, opts)
     -- Show diagnostics
     vim.keymap.set('n', '<leader>e', function()
-        -- need to call twice to jump into float window
+            -- need to call twice to jump into float window
             vim.diagnostic.open_float()
             vim.diagnostic.open_float()
         end,

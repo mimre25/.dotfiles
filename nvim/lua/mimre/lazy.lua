@@ -44,18 +44,11 @@ require("lazy").setup({
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
     { "hrsh7th/cmp-cmdline" },
-    { "hrsh7th/nvim-cmp" },
+    -- Autocompletion
+    --
     {
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v3.x",
+        "hrsh7th/nvim-cmp",
         dependencies = {
-            -- LSP Support
-            { "neovim/nvim-lspconfig" },
-            { "williamboman/mason.nvim" },
-            { "williamboman/mason-lspconfig.nvim" },
-            -- Autocompletion
-            --
-            { "hrsh7th/nvim-cmp" },
             { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-path" },
             {
@@ -70,6 +63,26 @@ require("lazy").setup({
             --            -- Snippets
             --            { "L3MON4D3/LuaSnip" },
             { "rafamadriz/friendly-snippets" },
+
+            -- for dbee
+            {
+                "MattiasMTS/cmp-dbee",
+                dependencies = {
+                    { "kndndrj/nvim-dbee" }
+                },
+                ft = "sql", -- optional but good to have
+                opts = {},  -- needed
+            },
+        },
+    },
+    {
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v3.x",
+        dependencies = {
+            -- LSP Support
+            { "neovim/nvim-lspconfig" },
+            { "williamboman/mason.nvim" },
+            { "williamboman/mason-lspconfig.nvim" },
         }
     },
 
@@ -258,7 +271,22 @@ require("lazy").setup({
     {
         'mimre25/tmux-telescope-picker.nvim',
         dependencies = { 'nvim-telescope/telescope.nvim' } -- duh
-    }
+    },
+    {
+        "kndndrj/nvim-dbee",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+        },
+        build = function()
+            -- Install tries to automatically detect the install method.
+            -- if it fails, try calling it with one of these parameters:
+            --    "curl", "wget", "bitsadmin", "go"
+            require("dbee").install()
+        end,
+        config = function()
+            require("dbee").setup( --[[optional config]])
+        end,
+    },
 }
 
 
