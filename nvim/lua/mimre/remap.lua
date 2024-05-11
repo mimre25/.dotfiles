@@ -43,7 +43,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 --    vim.cmd("so")
 --end)
 
-
 -- mine
 -- go back
 vim.keymap.set("n", "gb", "<C-o>")
@@ -57,16 +56,14 @@ vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 -- vim.keymap.set("t", "<C-D>", "<C-D><C-\\><C-n><C-W>q>")
 ----- == mapped in toggleterm == -----
 
-
 -- reload nvim config
 -- TODO find a way to reaload neovim config
 
 -- resize windows
 vim.keymap.set("n", "<M-a-l>", ":vertical resize +3<CR>")
 vim.keymap.set("n", "<M-a-h>", ":vertical resize -3<CR>")
-vim.keymap.set("n", "<M-a-j>",  ":resize +3<CR>")
+vim.keymap.set("n", "<M-a-j>", ":resize +3<CR>")
 vim.keymap.set("n", "<M-a-k>", ":resize -3<CR>")
-
 
 -- move in insert mode
 -- vim.keymap.set("i", "<C-J>", "<C-o>j")

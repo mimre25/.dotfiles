@@ -70,7 +70,7 @@ HISTSIZE=1000000
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf command-not-found colored-man-pages timer conda-zsh-completion) 
+plugins=(git fzf command-not-found colored-man-pages timer conda-zsh-completion)
 TIMER_FORMAT='[%d]';
 TIMER_PRECISION=2
 source $ZSH/oh-my-zsh.sh
@@ -164,7 +164,7 @@ find_in_micromamba_env(){
     micromamba env list | grep "  ${@} " >/dev/null 2>/dev/null
 }
 
-post_cd_hook() { 
+post_cd_hook() {
     env_name=$(echo $(basename $(pwd)) | sed 's/\./_/g')
 
     if find_in_micromamba_env ${env_name}; then
@@ -187,7 +187,7 @@ if [[ -n "${TMUX}" ]]; then
 fi
 
 ctrl_d() {
-    if [[ -n "${TMUX}" ]]; then 
+    if [[ -n "${TMUX}" ]]; then
         num_panes=$(tmux list-panes | wc -l);
         num_windows=$(tmux list-windows | wc -l);
         if [[ $num_panes -eq 1 ]] && [[ $num_windows -eq 1 ]]; then
@@ -195,11 +195,11 @@ ctrl_d() {
         else
             exit;
         fi
-    else 
+    else
         exit;
     fi
 }
-zle -N ctrl_d; # register as "widget" 
+zle -N ctrl_d; # register as "widget"
 bindkey '^D' ctrl_d;
 
 
@@ -244,4 +244,3 @@ alias sudo='sudo '
 
 
 alias gpsuf='git push --set-upstream fork $(git_current_branch)'
-

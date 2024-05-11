@@ -6,4 +6,3 @@
   (string_content) @injection.content
     (#match? @start "^[\"']{3}")
     (#set! injection.language "sql"))
-
