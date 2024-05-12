@@ -60,3 +60,11 @@ vim.keymap.set("n", "<leader>gi", builtin.lsp_implementations, { desc = "builtin
 vim.keymap.set("n", "<leader>sa", builtin.treesitter, { desc = "builtin.treesitter" })
 
 vim.keymap.set("n", "<leader>vh", builtin.help_tags, { desc = "builtin.help_tags" })
+
+-- vim.api.nvim_create_autocmd("User TelescopeResumePost", {
+-- })
+vim.api.nvim_create_autocmd("User", {
+	pattern = "TelescopePreviewerLoaded",
+	once = true,
+	callback = require("dbee").close,
+})

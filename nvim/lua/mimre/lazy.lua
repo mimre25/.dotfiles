@@ -195,7 +195,6 @@ require("lazy").setup({
 	{
 		"adalessa/laravel.nvim",
 		dependencies = {
-			"nvim-telescope/telescope.nvim",
 			"tpope/vim-dotenv",
 			"MunifTanjim/nui.nvim",
 			"nvimtools/none-ls.nvim",
@@ -264,7 +263,6 @@ require("lazy").setup({
 	-- },
 	{
 		"mimre25/tmux-telescope-picker.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim" }, -- duh
 	},
 	{
 		"kndndrj/nvim-dbee",
