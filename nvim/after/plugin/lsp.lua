@@ -43,6 +43,19 @@ lspconfig.marksman.setup({ capabilities = capabilities })
 lspconfig.rust_analyzer.setup({ capabilities = capabilities })
 lspconfig.marksman.setup({ capabilities = capabilities })
 lspconfig.pylsp.setup({ capabilities = capabilities })
+
+lspconfig.pylsp.setup {
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    maxLineLength = 120
+                }
+            }
+        }
+    }
+}
+
 lspconfig.phpactor.setup({ capabilities = capabilities })
 lspconfig.vuels.setup({
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
