@@ -223,11 +223,11 @@ flip() {
 
 _notes() {
     if [[ -z "${TMUX}" ]]; then
-        tmux new-session -A -s notes -c ~ vim notes.txt;
+        tmux new-session -A -s notes -c ~ nvim notes.txt;
     else
         tmux switch-client -t notes;
         if [[ $? -eq 1 ]]; then
-            tmux new-session -d -s notes -c ~ vim notes.txt;
+            tmux new-session -d -s notes -c ~ nvim notes.txt;
             tmux switch-client -t notes;
         fi
     fi
@@ -244,3 +244,4 @@ alias sudo='sudo '
 
 
 alias gpsuf='git push --set-upstream fork $(git_current_branch)'
+alias cat='bat'
