@@ -29,3 +29,10 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+
+-- fold based on indentation level
+vim.opt.foldmethod = "indent"
+-- open all folds per default
+vim.opt.foldlevelstart = 99
+-- to try this out set `foldmethod = "expr"`
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
