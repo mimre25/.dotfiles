@@ -62,16 +62,6 @@ require("lazy").setup({
 			--            -- Snippets
 			--            { "L3MON4D3/LuaSnip" },
 			{ "rafamadriz/friendly-snippets" },
-
-			-- for dbee
-			{
-				"MattiasMTS/cmp-dbee",
-				dependencies = {
-					{ "kndndrj/nvim-dbee" },
-				},
-				ft = "sql", -- optional but good to have
-				opts = {}, -- needed
-			},
 		},
 	},
 	{
@@ -264,21 +254,6 @@ require("lazy").setup({
 	{
 		"mimre25/tmux-telescope-picker.nvim",
 	},
-	{
-		"kndndrj/nvim-dbee",
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-		},
-		build = function()
-			-- Install tries to automatically detect the install method.
-			-- if it fails, try calling it with one of these parameters:
-			--    "curl", "wget", "bitsadmin", "go"
-			require("dbee").install()
-		end,
-		config = function()
-			require("dbee").setup( --[[optional config]])
-		end,
-	},
 	-- cheatsheet for vim commands
 	{
 		"doctorfree/cheatsheet.nvim",
@@ -316,4 +291,22 @@ require("lazy").setup({
 			})
 		end,
 	},
+    -- databases
+    {
+      "kristijanhusak/vim-dadbod-ui",
+      dependencies = {
+        { "tpope/vim-dadbod", lazy = true },
+        { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+      },
+      cmd = {
+        "DBUI",
+        "DBUIToggle",
+        "DBUIAddConnection",
+        "DBUIFindBuffer",
+      },
+      init = function()
+        -- Your DBUI configuration
+        vim.g.db_ui_use_nerd_fonts = 1
+      end,
+    }
 })
