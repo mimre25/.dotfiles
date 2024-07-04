@@ -58,3 +58,17 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	pattern = "*",
 	command = [[%s/\s\+$//e]],
 })
+
+
+local cmp = require("cmp")
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'sql', 'mysql', 'plsql' },
+    callback = function()
+      cmp.setup.buffer({
+        sources = {
+          { name = 'vim-dadbod-completion' },
+          { name = 'vsnip' },
+        },
+      })
+    end,
+  })

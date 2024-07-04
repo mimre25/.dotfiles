@@ -296,6 +296,7 @@ require("lazy").setup({
 		"kristijanhusak/vim-dadbod-ui",
 		dependencies = {
 			{ "tpope/vim-dadbod", lazy = true },
+            { "pbogut/vim-dadbod-ssh"},
 			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
 		},
 		cmd = {
