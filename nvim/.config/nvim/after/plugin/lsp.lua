@@ -9,6 +9,7 @@ require("mason-lspconfig").setup({
 		"tsserver",
 		"rust_analyzer",
 		"pyright",
+        "marksman",
 	},
 	handlers = {
 		lsp.default_setup,
@@ -60,7 +61,7 @@ lspconfig.vuels.setup({
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
 	capabilities = capabilities,
 })
-
+lspconfig.jsonls.setup({})
 lsp.set_preferences({
 	suggest_lsp_servers = false,
 	sign_icons = {
