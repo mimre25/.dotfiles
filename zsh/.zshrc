@@ -70,7 +70,7 @@ HISTSIZE=1000000
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf command-not-found colored-man-pages timer conda-zsh-completion)
+plugins=(git fzf command-not-found colored-man-pages timer) #conda-zsh-completion)
 TIMER_FORMAT='[%d]';
 TIMER_PRECISION=2
 source $ZSH/oh-my-zsh.sh
@@ -103,14 +103,14 @@ source $ZSH/oh-my-zsh.sh
 
 PATH=$PATH:/snap/bin
 
-export VISUAL=vim;
+export VISUAL=nvim;
 export EDITOR="$VISUAL";
 
 
 
 PATH=$PATH:/usr/share/applications
 PATH=$PATH:/var/lib/snapd/desktop/applications
-source /etc/profile.d/apps-bin-path.sh
+# source /etc/profile.d/apps-bin-path.sh
 PATH=$PATH:/home/martin/.local/bin
 
 
@@ -136,7 +136,7 @@ export TOX_DISCOVER="/home/martin/micromamba/envs/py37/bin /home/martin/micromam
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE='/home/martin/.local/bin/micromamba';
+export MAMBA_EXE='/usr/bin/micromamba';
 export MAMBA_ROOT_PREFIX='/home/martin/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
@@ -147,12 +147,11 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
-antigen bundle esc/conda-zsh-completion
+# antigen bundle esc/conda-zsh-completion
 antigen apply
 
 
 
-export XDG_CONFIG_HOME=/home/martin;
 alias vim=nvim;
 alias vim!=/usr/bin/vim;
 
@@ -245,3 +244,12 @@ alias sudo='sudo '
 
 alias gpsuf='git push --set-upstream fork $(git_current_branch)'
 alias cat='bat'
+alias cat!=/usr/bin/cat
+
+# bun completions
+[ -s "/home/martin/.bun/_bun" ] && source "/home/martin/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$PATH:${HOME}/go/bin/"
