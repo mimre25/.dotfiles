@@ -139,26 +139,12 @@ require("lazy").setup({
 		"stevearc/oil.nvim",
 	},
 
-	-- markdown preview
-	{
-		-- need `deno` installed unfortunately :/
-		"toppair/peek.nvim",
-		event = { "VeryLazy" },
-		build = "deno task --quiet build:fast",
-		config = function()
-			local peek = require("peek")
-			peek.setup({ theme = "light", app = { "firefox", "-new-window" } })
-			vim.api.nvim_create_user_command("PeekOpen", peek.open, {})
-			vim.api.nvim_create_user_command("MarkdownPreview", function()
-				if peek.is_open() then
-					peek.close()
-				else
-					peek.open()
-				end
-			end, {})
-			vim.api.nvim_create_user_command("PeekClose", peek.close, {})
-		end,
-	},
+    -- general preview (Markdown, HTML, Asciidoc)
+    {
+        'brianhuster/live-preview.nvim',
+        -- dependencies = {'brianhuster/autosave.nvim'}, -- Not required, but recomended for autosaving and sync scrolling
+        opts = {},
+   },
 
 	-- keep track of yanks
 	{
