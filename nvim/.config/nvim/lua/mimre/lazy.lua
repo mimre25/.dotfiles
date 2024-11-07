@@ -306,4 +306,6 @@ require("lazy").setup({
 		opts = {},
 	},
 
+	-- check keymaps
+	{ "meznaric/key-analyzer.nvim", opts = {} },
 })
