@@ -56,7 +56,27 @@ lspconfig.pylsp.setup({
 	},
 })
 
-lspconfig.phpactor.setup({ capabilities = capabilities })
+-- copied form jess archer
+-- https://github.com/jessarcher/dotfiles/blob/ef692c35d64db2c13674dfc850a23b6acf9e8f91/nvim/lua/user/plugins/lspconfig.lua#L25
+lspconfig.intelephense.setup({
+	-- commands = {
+	--   IntelephenseIndex = {
+	--     function()
+	--       vim.lsp.buf.execute_command({ command = 'intelephense.index.workspace' })
+	--     end,
+	--   },
+	-- },
+	-- on_attach = function(client, bufnr)
+	-- client.server_capabilities.documentFormattingProvider = false
+	-- client.server_capabilities.documentRangeFormattingProvider = false
+	-- if client.server_capabilities.inlayHintProvider then
+	--   vim.lsp.buf.inlay_hint(bufnr, true)
+	-- end
+	-- end,
+	capabilities = capabilities,
+})
+
+-- lspconfig.phpactor.setup({ capabilities = capabilities })
 lspconfig.vuels.setup({
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
 	capabilities = capabilities,
