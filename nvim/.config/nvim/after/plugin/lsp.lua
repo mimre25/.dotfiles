@@ -62,6 +62,11 @@ lspconfig.vuels.setup({
 	capabilities = capabilities,
 })
 lspconfig.jsonls.setup({})
+
+lspconfig.elixirls.setup({
+	cmd = { "/home/martin/.local/share/nvim/mason/bin/elixir-ls" },
+})
+
 lsp.set_preferences({
 	suggest_lsp_servers = false,
 	sign_icons = {
