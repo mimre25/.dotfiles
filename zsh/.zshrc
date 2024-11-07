@@ -136,7 +136,7 @@ export TOX_DISCOVER="/home/martin/micromamba/envs/py37/bin /home/martin/micromam
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE='/usr/bin/micromamba';
+export MAMBA_EXE='/home/martin/.local/bin/micromamba';
 export MAMBA_ROOT_PREFIX='/home/martin/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
