@@ -113,7 +113,6 @@ lspconfig.volar.setup({
 })
 
 lspconfig.pbls.setup({})
-lspconfig.bufls.setup({})
 
 lsp.set_preferences({
 	suggest_lsp_servers = false,
