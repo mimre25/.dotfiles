@@ -243,6 +243,7 @@ alias sudo='sudo '
 
 
 alias gpsuf='git push --set-upstream fork $(git_current_branch)'
+alias gcfi='git-fixup-interactive'
 alias cat='bat'
 alias cat!=/usr/bin/cat
 
