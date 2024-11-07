@@ -174,7 +174,7 @@ require("lazy").setup({
 			"tpope/vim-dotenv",
 			"MunifTanjim/nui.nvim",
 			"nvimtools/none-ls.nvim",
-			"promise-async",
+			"kevinhwang91/promise-async",
 		},
 		cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
 		event = { "VeryLazy" },
