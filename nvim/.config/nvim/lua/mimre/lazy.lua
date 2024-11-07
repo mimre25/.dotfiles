@@ -174,6 +174,7 @@ require("lazy").setup({
 			"tpope/vim-dotenv",
 			"MunifTanjim/nui.nvim",
 			"nvimtools/none-ls.nvim",
+			"promise-async",
 		},
 		cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
 		event = { "VeryLazy" },
@@ -336,5 +337,12 @@ require("lazy").setup({
 				desc = "Generate Model Info for all models",
 			},
 		},
+	},
+
+	-- tailwind support
+	{
+		"luckasRanarison/tailwind-tools.nvim",
+		name = "tailwind-tools",
+		build = ":UpdateRemotePlugins",
 	},
 })

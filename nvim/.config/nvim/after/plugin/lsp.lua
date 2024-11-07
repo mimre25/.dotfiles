@@ -6,7 +6,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = {
-		"tsserver",
+		"ts_ls",
 		"rust_analyzer",
 		"pyright",
 		"marksman",
@@ -77,15 +77,43 @@ lspconfig.intelephense.setup({
 })
 
 -- lspconfig.phpactor.setup({ capabilities = capabilities })
-lspconfig.vuels.setup({
-	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
-	capabilities = capabilities,
-})
+-- lspconfig.vuels.setup({
+-- 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+-- 	capabilities = capabilities,
+-- })
 lspconfig.jsonls.setup({})
 
 lspconfig.elixirls.setup({
 	cmd = { "/home/martin/.local/share/nvim/mason/bin/elixir-ls" },
 })
+
+lspconfig.ts_ls.setup({
+	init_options = {
+		plugins = {
+			{
+				name = "@vue/typescript-plugin",
+				location = "",
+				languages = { "javascript", "typescript", "vue" },
+			},
+		},
+	},
+	filetypes = {
+		"javascript",
+		"typescript",
+		"vue",
+	},
+})
+lspconfig.tailwindcss.setup({})
+-- lspconfig.vuels.setup({
+-- 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+-- 	capabilities = capabilities,
+-- })
+lspconfig.volar.setup({
+	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+})
+
+lspconfig.pbls.setup({})
+lspconfig.bufls.setup({})
 
 lsp.set_preferences({
 	suggest_lsp_servers = false,
