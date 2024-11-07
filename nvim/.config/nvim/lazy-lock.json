@@ -24,6 +24,7 @@
   "jsonfly.nvim": { "branch": "main", "commit": "acd899ce82d902cb91869c932092ffdbf3de9de4" },
   "kanagawa.nvim": { "branch": "master", "commit": "860e4f80df71221d18bf2cd9ef1deb4d364274d2" },
   "key-analyzer.nvim": { "branch": "main", "commit": "4b3a317467d22360491854d3fed3688c7ffa8a3e" },
+  "laravel-ide-helper.nvim": { "branch": "main", "commit": "4ccf2cd6cc7e260f0d145a8063340912353d0b6f" },
   "laravel.nvim": { "branch": "main", "commit": "baafe3c0072ecb7c8f1efc9ed5e3c96ff4fbf056" },
   "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
   "live-preview.nvim": { "branch": "main", "commit": "d69a85acde34e0c9bc9ffaaf725ce475b00ee8e6" },
