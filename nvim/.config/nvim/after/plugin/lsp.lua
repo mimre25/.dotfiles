@@ -9,7 +9,7 @@ require("mason-lspconfig").setup({
 		"tsserver",
 		"rust_analyzer",
 		"pyright",
-        "marksman",
+		"marksman",
 	},
 	handlers = {
 		lsp.default_setup,

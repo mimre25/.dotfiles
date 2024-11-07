@@ -139,12 +139,12 @@ require("lazy").setup({
 		"stevearc/oil.nvim",
 	},
 
-    -- general preview (Markdown, HTML, Asciidoc)
-    {
-        'brianhuster/live-preview.nvim',
-        -- dependencies = {'brianhuster/autosave.nvim'}, -- Not required, but recomended for autosaving and sync scrolling
-        opts = {},
-   },
+	-- general preview (Markdown, HTML, Asciidoc)
+	{
+		"brianhuster/live-preview.nvim",
+		-- dependencies = {'brianhuster/autosave.nvim'}, -- Not required, but recomended for autosaving and sync scrolling
+		opts = {},
+	},
 
 	-- keep track of yanks
 	{
@@ -282,7 +282,7 @@ require("lazy").setup({
 		"kristijanhusak/vim-dadbod-ui",
 		dependencies = {
 			{ "tpope/vim-dadbod", lazy = true },
-            { "pbogut/vim-dadbod-ssh"},
+			{ "pbogut/vim-dadbod-ssh" },
 			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
 		},
 		cmd = {

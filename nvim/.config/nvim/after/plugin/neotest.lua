@@ -6,7 +6,7 @@ require("neotest").setup({
 		}),
 		require("neotest-phpunit")({
 			phpunit_cmd = function()
-			    return { "vendor/bin/sail", "test", "--parallel" }
+				return { "vendor/bin/sail", "test", "--parallel" }
 			end,
 			filter_dirs = { ".git", "node_modules", "vendor" },
 			env = {
