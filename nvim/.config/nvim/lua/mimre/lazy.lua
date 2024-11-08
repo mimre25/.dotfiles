@@ -2,7 +2,12 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	"folke/which-key.nvim",
+	{
+		"folke/which-key.nvim",
+		config = {
+			delay = 1000,
+		},
+	},
 	"folke/neodev.nvim",
 	{
 		"nvim-telescope/telescope.nvim",
