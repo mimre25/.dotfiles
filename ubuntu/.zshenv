@@ -7,3 +7,12 @@ alias vim!=/usr/bin/vim
 . "$HOME/.cargo/env"
 export DENO_INSTALL="/home/martin/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+
+_lazy_load_npm() {
+    unalias npm;
+    load_nvm;
+    unfunction _lazy_load_npm;
+}
+
+alias npm="_lazy_load_npm && npm";
