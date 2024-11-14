@@ -31,7 +31,14 @@
     submoduleSummary = true
 
 
-
+[fixup]
+    menu = fzf --height '60%' \
+                --bind 'tab:toggle-preview' \
+                --preview 'git show --color {+1}' \
+                --preview-window=up:80% \
+                --prompt 'Select commit: '
+    commit = true
+    base = closest
 
 
 

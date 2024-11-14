@@ -1,6 +1,0 @@
-#!/bin/bash
-
-res=$(git log --oneline | fzf)
-ref=$(echo $res | cut -d ' ' -f1)
-
-git commit --fixup ${ref}
