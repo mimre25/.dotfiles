@@ -11,7 +11,11 @@
 
 set $mod Mod4
 
+# auth agents for apps usage
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 exec --no-startup-id picom
+
 
 # disable screen timeout/power saving
 exec --no-startup-id xset -dpms
