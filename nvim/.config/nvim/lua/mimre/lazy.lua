@@ -350,4 +350,10 @@ require("lazy").setup({
 		name = "tailwind-tools",
 		build = ":UpdateRemotePlugins",
 	},
+
+	-- swap functions params
+	{
+		"mizlan/iswap.nvim",
+		event = "VeryLazy",
+	},
 })
