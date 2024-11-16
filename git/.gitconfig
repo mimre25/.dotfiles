@@ -1,7 +1,7 @@
 [blame]
     ignoreRevsFile = .git-blame-ignore-revs
-	markIgnoredLines = true
-	markUnblamableLines = true
+    markIgnoredLines = true
+    markUnblamableLines = true
 
 [core]
     editor = nvim
@@ -45,8 +45,6 @@
                 --prompt 'Select commit: '
     commit = true
     base = closest
-
-
 
 
 [include]
