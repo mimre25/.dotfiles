@@ -22,7 +22,7 @@
     cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 
 [pull]
-    rebase = false
+    rebase = true
 
 [rerere]
     enabled = true
