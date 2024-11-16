@@ -30,6 +30,12 @@
 [status]
     submoduleSummary = true
 
+[submodule]
+    recurse = true
+
+[push]
+    recurseSubmodules = on-demand
+
 
 [fixup]
     menu = fzf --height '60%' \
