@@ -26,7 +26,7 @@
   "kanagawa.nvim": { "branch": "master", "commit": "ad3dddecd606746374ba4807324a08331dfca23c" },
   "key-analyzer.nvim": { "branch": "main", "commit": "4b3a317467d22360491854d3fed3688c7ffa8a3e" },
   "laravel-ide-helper.nvim": { "branch": "main", "commit": "4ccf2cd6cc7e260f0d145a8063340912353d0b6f" },
-  "laravel.nvim": { "branch": "main", "commit": "2e7c08c0511234d5816166c1204e2240edac99b5" },
+  "laravel.nvim": { "branch": "main", "commit": "67b7d8557d3ef0d08b8cc68947d1feca935c60fa" },
   "lazy.nvim": { "branch": "main", "commit": "b1134ab82ee4279e31f7ddf7e34b2a99eb9b7bc9" },
   "live-preview.nvim": { "branch": "main", "commit": "ebf1e4880c5e3955e6d9f1b9a37065c913ae9f9e" },
   "lsp-zero.nvim": { "branch": "v3.x", "commit": "ab2a3413646fedd77aa0eab4214a6473e62f6a64" },
