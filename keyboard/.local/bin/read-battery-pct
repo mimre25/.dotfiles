@@ -1,0 +1,38 @@
+#!/home/martin/micromamba/envs/keyboard/bin/python -u
+
+from serial_asyncio import open_serial_connection
+import asyncio
+
+color_primary = "%{F#F0C674}"
+color_foreground = "%{F#C5C8C6}"
+color_alert = "%{F#A54242}"
+
+label = "⌨️"
+
+
+async def read(reader):
+    try:
+        left_pct = int(await reader.readline())
+        _ = await reader.readline()  # ignore the `.` line
+        right_pct = int(await reader.readline())
+        _ = await reader.readline()  # ignore the `.` line
+
+        color_label = color_alert if left_pct < 20 or right_pct < 20 else color_primary
+        print(f"{color_label}{label}{color_foreground} {left_pct}/{right_pct}%")
+    except Exception:
+        pass
+
+
+async def write(writer):
+    writer.write(b"wireless.battery.left.level\n")
+    writer.write(b"wireless.battery.right.level\n")
+    await writer.drain()
+
+
+async def main():
+    reader, writer = await open_serial_connection(url='/dev/ttyACM0')
+    await asyncio.gather(write(writer), read(reader))
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
