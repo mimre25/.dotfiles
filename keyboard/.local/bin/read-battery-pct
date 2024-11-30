@@ -2,12 +2,15 @@
 
 from serial_asyncio import open_serial_connection
 import asyncio
+from filelock import FileLock
 
 color_primary = "%{F#F0C674}"
 color_foreground = "%{F#C5C8C6}"
 color_alert = "%{F#A54242}"
 
 label = "⌨️"
+
+lock = FileLock("/tmp/battery-pct", timeout=60)
 
 
 async def read(reader):
@@ -30,8 +33,9 @@ async def write(writer):
 
 
 async def main():
-    reader, writer = await open_serial_connection(url='/dev/ttyACM0')
-    await asyncio.gather(write(writer), read(reader))
+    with lock.acquire():
+        reader, writer = await open_serial_connection(url='/dev/ttyACM0')
+        await asyncio.gather(write(writer), read(reader))
 
 
 if __name__ == "__main__":
