@@ -182,6 +182,9 @@ require("lazy").setup({
 			"kevinhwang91/promise-async",
 		},
 		cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
+		opts = {
+			lsp_server = "intelephense",
+		},
 		event = { "VeryLazy" },
 		config = true,
 	},
