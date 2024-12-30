@@ -6,10 +6,16 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = {
+		"ansiblels",
+		"eslint",
+		"html",
+		"jsonls",
+		"lua_ls",
+		"pylsp",
+		"tailwindcss",
 		"ts_ls",
-		"rust_analyzer",
-		"pyright",
-		"marksman",
+		"volar",
+		"yamlls",
 	},
 	handlers = {
 		lsp.default_setup,
