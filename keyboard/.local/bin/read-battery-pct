@@ -3,32 +3,68 @@
 from serial_asyncio import open_serial_connection
 import asyncio
 from filelock import FileLock
+from enum import IntEnum
 
-color_primary = "%{F#F0C674}"
-color_foreground = "%{F#C5C8C6}"
-color_alert = "%{F#A54242}"
+COLOR_PRIMARY = "%{F#F0C674}"
+COLOR_FOREGROUND = "%{F#C5C8C6}"
+COLOR_ALERT = "%{F#A54242}"
 
 label = "⌨️"
 
 lock = FileLock("/tmp/battery-pct", timeout=60)
 
 
+class BatteryStatus(IntEnum):
+    # https://github.com/Dygmalab/Bazecor/blob/development/FOCUS_API.md#expected-output-41
+    NORMAL = 0
+    CHARGING = 1
+    FULL = 2
+    FAULTY = 3
+    DISCONNECTED = 4
+
+
+def status_icon(status):
+    if status == BatteryStatus.CHARGING:
+        return "󱐋"
+    if status == BatteryStatus.FULL:
+        return f"{COLOR_PRIMARY}󱐋{COLOR_FOREGROUND}"
+
+    return ""
+
 async def read(reader):
     try:
         left_pct = int(await reader.readline())
         _ = await reader.readline()  # ignore the `.` line
+        left_status = int(await reader.readline())
+        _ = await reader.readline()  # ignore the `.` line
         right_pct = int(await reader.readline())
         _ = await reader.readline()  # ignore the `.` line
+        right_status = int(await reader.readline())
+        _ = await reader.readline()  # ignore the `.` line
 
-        color_label = color_alert if left_pct < 20 or right_pct < 20 else color_primary
-        print(f"{color_label}{label}{color_foreground} {left_pct}/{right_pct}%")
+        left_status_icon = status_icon(left_status)
+        right_status_icon = status_icon(right_status)
+        color_label = COLOR_ALERT if left_pct < 20 or right_pct < 20 else COLOR_PRIMARY
+        pct_sign = "%"
+
+        if left_status == BatteryStatus.DISCONNECTED:
+            left_pct = "-"
+        if right_status == BatteryStatus.DISCONNECTED:
+            right_pct = "-"
+        if left_status == right_status == BatteryStatus.DISCONNECTED:
+            pct_sign = ""
+
+        print(f"{color_label}{label}{COLOR_FOREGROUND} {left_status_icon}{left_pct}/{right_status_icon}{right_pct}{pct_sign}")
+
     except Exception:
         pass
 
 
 async def write(writer):
     writer.write(b"wireless.battery.left.level\n")
+    writer.write(b"wireless.battery.left.status\n")
     writer.write(b"wireless.battery.right.level\n")
+    writer.write(b"wireless.battery.right.status\n")
     await writer.drain()
 
 
