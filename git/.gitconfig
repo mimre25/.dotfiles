@@ -44,7 +44,7 @@
                 --preview-window=up:80% \
                 --prompt 'Select commit: '
     commit = true
-    base = closest
+    ; base = closest
 
 
 [include]
