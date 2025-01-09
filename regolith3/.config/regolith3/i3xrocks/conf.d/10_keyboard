@@ -1,0 +1,7 @@
+# Keyboard Battery Percentage
+#
+# The script may be called with -w and -c switches to specify thresholds,
+# see the script for details.
+[keyboard-battery]
+command=~/.local/bin/read-battery-pct
+interval=300
