@@ -1,5 +1,6 @@
 require("mimre.bootstrap")
 require("mimre.set")
+require("mimre.filetype")
 require("mimre.remap")
 require("mimre.lazy")
 require("mimre.autocmd")
