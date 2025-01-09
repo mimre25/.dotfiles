@@ -35,15 +35,6 @@ vim.api.nvim_create_autocmd("BufLeave", {
 -- end
 -- autocmd to go to github when using `gf` in lazy.lua
 
--- everything is an ansible file if ansible is in the path
-
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = { "**/ansible/**.yml" },
-	callback = function()
-		vim.cmd.setfiletype("yaml.ansible")
-	end,
-})
-
 vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
 	callback = function()
