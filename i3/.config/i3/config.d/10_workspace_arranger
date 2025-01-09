@@ -28,5 +28,3 @@ assign [class="(?i)lens"] 8
 assign [class="thunderbird"] 4
 assign [class="(?i)gimp.*"] 11
 assign [class="firefox-hsf"] 4
-
-
