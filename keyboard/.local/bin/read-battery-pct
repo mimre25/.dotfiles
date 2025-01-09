@@ -3,7 +3,8 @@
 from serial_asyncio import open_serial_connection
 import asyncio
 from filelock import FileLock
-from enum import IntEnum
+from enum import IntEnum, StrEnum
+import sys
 
 COLOR_PRIMARY = "%{F#F0C674}"
 COLOR_FOREGROUND = "%{F#C5C8C6}"
@@ -23,6 +24,12 @@ class BatteryStatus(IntEnum):
     DISCONNECTED = 4
 
 
+class OutputMode(StrEnum):
+    UNKNOWN = "unknown"
+    WAYBAR = "waybar"
+    POLYBAR = "polybar"
+
+
 def status_icon(status):
     if status == BatteryStatus.CHARGING:
         return "󱐋"
@@ -31,7 +38,73 @@ def status_icon(status):
 
     return ""
 
-async def read(reader):
+
+def output_uknown(
+    left_status_icon: str,
+    right_status_icon: str,
+    left_pct: int,
+    right_pct: int,
+    pct_sign: str,
+):
+    print(
+        f"{label} {left_status_icon}{left_pct}/{right_status_icon}{right_pct}{pct_sign}"
+    )
+
+
+def output_polybar(
+    left_status_icon: str,
+    right_status_icon: str,
+    left_pct: int,
+    right_pct: int,
+    pct_sign: str,
+):
+    color_label = COLOR_ALERT if left_pct < 20 or right_pct < 20 else COLOR_PRIMARY
+    print(
+        f"{color_label}{label}{COLOR_FOREGROUND} {left_status_icon}{left_pct}/{right_status_icon}{right_pct}{pct_sign}"
+    )
+
+
+def output_waybar(
+    left_status_icon: str,
+    right_status_icon: str,
+    left_pct: int,
+    right_pct: int,
+    pct_sign: str,
+):
+    print(
+        f"{label} {left_status_icon}{left_pct}/{right_status_icon}{right_pct}{pct_sign}"
+    )
+
+
+def output(
+    mode: str, left_status: int, right_status: int, left_pct: int, right_pct: int
+):
+    left_status_icon = status_icon(left_status)
+    right_status_icon = status_icon(right_status)
+    pct_sign = "%"
+
+    if left_status == BatteryStatus.DISCONNECTED:
+        left_pct = "-"
+    if right_status == BatteryStatus.DISCONNECTED:
+        right_pct = "-"
+    if left_status == right_status == BatteryStatus.DISCONNECTED:
+        pct_sign = ""
+
+    if mode == OutputMode.UNKNOWN:
+        output_uknown(
+            left_status_icon, right_status_icon, left_pct, right_pct, pct_sign
+        )
+    elif mode == OutputMode.POLYBAR:
+        output_polybar(
+            left_status_icon, right_status_icon, left_pct, right_pct, pct_sign
+        )
+    elif mode == OutputMode.WAYBAR:
+        output_waybar(
+            left_status_icon, right_status_icon, left_pct, right_pct, pct_sign
+        )
+
+
+async def read(reader, output_mode: str):
     try:
         left_pct = int(await reader.readline())
         _ = await reader.readline()  # ignore the `.` line
@@ -42,19 +115,7 @@ async def read(reader):
         right_status = int(await reader.readline())
         _ = await reader.readline()  # ignore the `.` line
 
-        left_status_icon = status_icon(left_status)
-        right_status_icon = status_icon(right_status)
-        color_label = COLOR_ALERT if left_pct < 20 or right_pct < 20 else COLOR_PRIMARY
-        pct_sign = "%"
-
-        if left_status == BatteryStatus.DISCONNECTED:
-            left_pct = "-"
-        if right_status == BatteryStatus.DISCONNECTED:
-            right_pct = "-"
-        if left_status == right_status == BatteryStatus.DISCONNECTED:
-            pct_sign = ""
-
-        print(f"{color_label}{label}{COLOR_FOREGROUND} {left_status_icon}{left_pct}/{right_status_icon}{right_pct}{pct_sign}")
+        output(output_mode, left_status, right_status, left_pct, right_pct)
 
     except Exception:
         pass
@@ -68,11 +129,15 @@ async def write(writer):
     await writer.drain()
 
 
-async def main():
+async def main(mode: str):
     with lock.acquire():
-        reader, writer = await open_serial_connection(url='/dev/ttyACM0')
-        await asyncio.gather(write(writer), read(reader))
+        reader, writer = await open_serial_connection(url="/dev/ttyACM0")
+        await asyncio.gather(write(writer), read(reader, mode))
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    if len(sys.argv) == 1:
+        mode = "unknown"
+    else:
+        mode = sys.argv[1].lower()
+    asyncio.run(main(mode))
