@@ -54,7 +54,8 @@ async def read(reader):
         if left_status == right_status == BatteryStatus.DISCONNECTED:
             pct_sign = ""
 
-        print(f"{color_label}{label}{COLOR_FOREGROUND} {left_status_icon}{left_pct}/{right_status_icon}{right_pct}{pct_sign}")
+        # print(f"{color_label}{label}{COLOR_FOREGROUND} {left_status_icon}{left_pct}/{right_status_icon}{right_pct}{pct_sign}")
+        print(f"{label} {left_status_icon}{left_pct}/{right_status_icon}{right_pct}{pct_sign}")
 
     except Exception:
         pass
