@@ -240,11 +240,19 @@ alias path='echo -e ${PATH//:/\\n}'
 ## from https://www.digitalocean.com/community/questions/what-are-your-favorite-bash-aliases
 alias sudo='sudo '
 
-
+function git_add_staged_patch() {
+    files=$(git diff --cached  --name-only)
+    git add -p $files;
+}
 
 alias gpsuf='git push --set-upstream fork $(git_current_branch)'
 alias gcfib='git fixup --base closest'
 alias gcfi='git fixup'
+alias gras='git diff --cached  --name-only | xargs git restore --staged'
+alias gas='git diff --cached  --name-only | xargs git add'
+alias gasp='git_add_staged_patch'
+
+
 alias cat='bat'
 alias cat!=/usr/bin/cat
 
