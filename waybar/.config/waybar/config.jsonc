@@ -16,6 +16,7 @@
         "sway/window"
     ],
     "modules-right": [
+        "custom/keyboard",
         "mpd",
         "idle_inhibitor",
         "pulseaudio",
@@ -212,5 +213,13 @@
 			"suspend": "systemctl suspend",
 			"hibernate": "systemctl hibernate"
 		}
+    },
+
+    "custom/keyboard": {
+        "exec": "~/.local/bin/read-battery-pct waybar",
+        "interval": 300,
+        "exec-if": "test -e /dev/ttyACM0",
+        "format": "{}",
+        "on-click": "bazecor"
     }
 }
