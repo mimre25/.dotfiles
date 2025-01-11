@@ -10,7 +10,7 @@ COLOR_PRIMARY = "%{F#F0C674}"
 COLOR_FOREGROUND = "%{F#C5C8C6}"
 COLOR_ALERT = "%{F#A54242}"
 
-label = "⌨️"
+ICON = "⌨️"
 
 lock = FileLock("/tmp/battery-pct", timeout=60)
 
@@ -40,68 +40,100 @@ def status_icon(status):
 
 
 def output_uknown(
-    left_status_icon: str,
-    right_status_icon: str,
     left_pct: int,
     right_pct: int,
-    pct_sign: str,
+    left_status: int,
+    right_status: int,
 ):
-    print(
-        f"{label} {left_status_icon}{left_pct}/{right_status_icon}{right_pct}{pct_sign}"
-    )
+    left_status_icon = status_icon(left_status)
+    right_status_icon = status_icon(right_status)
+    show_left, show_right, show_pct_sign = output_status(left_status, right_status)
+    pct_sign = "%" if show_pct_sign else ""
+    l_pct = str(left_pct) if show_left else "-"
+    r_pct = str(right_pct) if show_right else "-"
+    print(f"{ICON} {left_status_icon}{l_pct}/{right_status_icon}{r_pct}{pct_sign}")
 
 
 def output_polybar(
-    left_status_icon: str,
-    right_status_icon: str,
     left_pct: int,
     right_pct: int,
-    pct_sign: str,
+    left_status: int,
+    right_status: int,
 ):
+    left_status_icon = status_icon(left_status)
+    right_status_icon = status_icon(right_status)
     color_label = COLOR_ALERT if left_pct < 20 or right_pct < 20 else COLOR_PRIMARY
+    show_left, show_right, show_pct_sign = output_status(left_status, right_status)
+    pct_sign = "%" if show_pct_sign else ""
+    l_pct = str(left_pct) if show_left else "-"
+    r_pct = str(right_pct) if show_right else "-"
     print(
-        f"{color_label}{label}{COLOR_FOREGROUND} {left_status_icon}{left_pct}/{right_status_icon}{right_pct}{pct_sign}"
+        f"{color_label}{ICON}{COLOR_FOREGROUND} {left_status_icon}{l_pct}/{right_status_icon}{r_pct}{pct_sign}"
     )
+
+
+def span(content: str, class_: str) -> str:
+    # return f"<span class=\"{class_}\">{content}</span>"
+    # return f"<span background=\"00FF00\">{content}</span>"
+    return f"<span>{content}</span>"
 
 
 def output_waybar(
-    left_status_icon: str,
-    right_status_icon: str,
     left_pct: int,
     right_pct: int,
-    pct_sign: str,
+    left_status: int,
+    right_status: int,
 ):
-    print(
-        f"{label} {left_status_icon}{left_pct}/{right_status_icon}{right_pct}{pct_sign}"
-    )
+    left_status_icon = status_icon(left_status)
+    right_status_icon = status_icon(right_status)
+    icon = span(ICON, "icon")
+    left_icon_class = "status_icon"
+    if left_status == BatteryStatus.FULL:
+        left_icon_class = "status_icon_full"
+
+    right_icon_class = "status_icon"
+    if right_status == BatteryStatus.FULL:
+        right_icon_class = "status_icon_full"
+
+    left_icon = span(left_status_icon, left_icon_class)
+    right_icon = span(right_status_icon, right_icon_class)
+
+    show_left, show_right, show_pct_sign = output_status(left_status, right_status)
+    pct_sign = "%" if show_pct_sign else ""
+
+    l_pct = str(left_pct) if show_left else "-"
+    r_pct = str(right_pct) if show_right else "-"
+
+    l_pct = span(l_pct, "pct left_pct")
+    r_pct = span(r_pct, "pct right_pct")
+
+    print(f"{icon} {left_icon}{l_pct}/{right_icon}{r_pct}{pct_sign}")
+
+
+def output_status(left_status: int, right_status: int) -> tuple:
+    show_left = True
+    show_right = True
+    show_pct_sign = True
+    if left_status == BatteryStatus.DISCONNECTED:
+        show_left = "-"
+    if right_status == BatteryStatus.DISCONNECTED:
+        show_right = "-"
+    if left_status == right_status == BatteryStatus.DISCONNECTED:
+        show_pct_sign = ""
+
+    return (show_left, show_right, show_pct_sign)
 
 
 def output(
     mode: str, left_status: int, right_status: int, left_pct: int, right_pct: int
 ):
-    left_status_icon = status_icon(left_status)
-    right_status_icon = status_icon(right_status)
-    pct_sign = "%"
-
-    if left_status == BatteryStatus.DISCONNECTED:
-        left_pct = "-"
-    if right_status == BatteryStatus.DISCONNECTED:
-        right_pct = "-"
-    if left_status == right_status == BatteryStatus.DISCONNECTED:
-        pct_sign = ""
 
     if mode == OutputMode.UNKNOWN:
-        output_uknown(
-            left_status_icon, right_status_icon, left_pct, right_pct, pct_sign
-        )
+        output_uknown(left_pct, right_pct, left_status, right_status)
     elif mode == OutputMode.POLYBAR:
-        output_polybar(
-            left_status_icon, right_status_icon, left_pct, right_pct, pct_sign
-        )
+        output_polybar(left_pct, right_pct, left_status, right_status)
     elif mode == OutputMode.WAYBAR:
-        output_waybar(
-            left_status_icon, right_status_icon, left_pct, right_pct, pct_sign
-        )
+        output_waybar(left_pct, right_pct, left_status, right_status)
 
 
 async def read(reader, output_mode: str):
