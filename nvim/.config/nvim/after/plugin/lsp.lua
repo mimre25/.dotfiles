@@ -97,6 +97,7 @@ lspconfig.ts_ls.setup({
 	init_options = {
 		plugins = {
 			{
+				-- TODO: this needs to be installed manually, in the home folder, so the path would be ~/node_modules/@vue/typescript-plugin
 				name = "@vue/typescript-plugin",
 				location = "",
 				languages = { "javascript", "typescript", "vue" },
