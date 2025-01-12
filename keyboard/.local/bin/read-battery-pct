@@ -115,11 +115,11 @@ def output_status(left_status: int, right_status: int) -> tuple:
     show_right = True
     show_pct_sign = True
     if left_status == BatteryStatus.DISCONNECTED:
-        show_left = "-"
+        show_left = False
     if right_status == BatteryStatus.DISCONNECTED:
-        show_right = "-"
+        show_right = False
     if left_status == right_status == BatteryStatus.DISCONNECTED:
-        show_pct_sign = ""
+        show_pct_sign = False
 
     return (show_left, show_right, show_pct_sign)
 
