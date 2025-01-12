@@ -1,12 +1,33 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: check-yaml
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+      - id: check-toml
+      - id: check-symlinks
+      - id: check-xml
+      - id: debug-statements
+        exclude: .*pdbrc
+      - id: detect-private-key
+      - id: pretty-format-json
+        args:
+          - --autofix
+        exclude: .*lazy-lock.json
+      - id: trailing-whitespace
+
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+    -   id: black
+
   - repo: https://github.com/JohnnyMorganz/StyLua
-    rev: v0.20.0
+    rev: v2.0.2
     hooks:
       - id: stylua # or stylua-system / stylua-github
         types: [lua]
