@@ -1,8 +1,16 @@
 #!/bin/bash
 
+set -euox pipefail;
+
+PYTHON="python"
+if [ -f "Dockerfile" ]; then
+    PYTHON=$(grep "FROM python" Dockerfile | sed 's/FROM \(python:[^- ]*\).*/\1/g')
+    echo "Found python version: ${PYTHON}"
+fi
+
 if [ "$#" -eq 0 ]; then
-    createMambaEnv $(basename $(pwd)) python=3.12 pip -y
-else 
-    createMambaEnv $1 python=3.12 pip -y
+    createMambaEnv $(basename $(pwd)) ${PYTHON/:/=} pip -y
+else
+    createMambaEnv $1 ${PYTHON/:/=} pip -y
 fi
 
