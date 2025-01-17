@@ -20,15 +20,37 @@ repos:
           - --autofix
         exclude: .*lazy-lock.json
       - id: trailing-whitespace
-
+  - repo: https://github.com/pre-commit/mirrors-csslint
+    rev: v1.0.5
+    hooks:
+      - id: csslint
   - repo: https://github.com/psf/black
     rev: 24.10.0
     hooks:
-    -   id: black
-
+      - id: black
   - repo: https://github.com/JohnnyMorganz/StyLua
     rev: v2.0.2
     hooks:
       - id: stylua # or stylua-system / stylua-github
         types: [lua]
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+  - repo: https://github.com/openstack/bashate
+    rev: 2.1.1
+    hooks:
+      - id: bashate
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.22.1
+    hooks:
+      - id: gitleaks
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.15.0
+    hooks:
+      - id: yamlfmt
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
 exclude: system/.*
