@@ -191,3 +191,7 @@ label:focus {
 #workspaces button.active {
     background-color: #0069d4;
 }
+
+#custom-keyboard {
+    color: white;
+}
