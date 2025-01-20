@@ -263,3 +263,6 @@ alias cat!=/usr/bin/cat
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$PATH:${HOME}/go/bin/"
+
+
+alias dbui="nvim +DBUI"
