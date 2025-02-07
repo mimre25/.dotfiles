@@ -31,7 +31,9 @@ else:
         raise Exception(f"Unknown Mode {mode}")
 
 
-resp = requests.post(f"http://megadesk.local/number/megadesk_height__cm_/set?value={height}")
+resp = requests.post(
+    f"http://megadesk.local/number/megadesk_height__cm_/set?value={height}"
+)
 
 if resp.status_code != 200:
     print(resp)

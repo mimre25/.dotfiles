@@ -1,4 +1,4 @@
-op() 
+op()
 {
   for i in *.pdf;
   do
@@ -6,21 +6,21 @@ op()
   done
 }
 
-rp() 
+rp()
 {
   for file in *.pdf;
-  do 
-    mv "$file" `echo $file | tr '[:upper:] ' '[:lower:]-'`; 
+  do
+    mv "$file" `echo $file | tr '[:upper:] ' '[:lower:]-'`;
   done
 }
 
-compress-pdf() 
+compress-pdf()
 {
-  gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; 
+  gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1;
 
 }
 
-convertToEps() 
+convertToEps()
 {
   for i in `ls *.$1`
   do
@@ -29,22 +29,22 @@ convertToEps()
   done
 }
 
-pngToEps() 
+pngToEps()
 {
-  for i in `ls`; 
-    do 
+  for i in `ls`;
+    do
       j=`basename -s '.png' $i`;
       convert -density 300 $i $j.eps;
   done
 }
 
-epsToPng() 
+epsToPng()
 {
   i=$(basename -s '.eps' $1);
   convert -density 300 $1 -resize 1024x1024 $i.png;
 }
 
-epsToJpg() 
+epsToJpg()
 {
   i=$(basename -s '.eps' $1);
   convert -density 300 $1 -resize 1024x1024 $i.jpg;
@@ -62,7 +62,7 @@ trimImage()
   extension="${filename##*.}";
   filename="${filename%.*}";
   convert $1 -trim out.${extension};
-  mv out.${extension} $1; 
+  mv out.${extension} $1;
 }
 
 
@@ -73,10 +73,10 @@ openWebloc()
         echo "Please supply the name of a .webloc file to open"
             exit
             fi
-  
+
   # Extract URL from webloc file
   URL=$(xmllint --xpath "string(//string)" "$1")
-  
+
   echo $URL;
   # Open $URL in Firefox
   google-chrome-stable $URL &

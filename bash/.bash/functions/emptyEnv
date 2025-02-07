@@ -1,8 +1,7 @@
-#!/bin/bash 
+#!/bin/bash
 #
 if [ "$#" -eq 0 ]; then
-    createMambaEnv $(basename $(pwd)) 
-else 
-    createMambaEnv $1 
+    createMambaEnv $(basename $(pwd))
+else
+    createMambaEnv $1
 fi
-

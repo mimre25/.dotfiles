@@ -1,5 +1,5 @@
-  for i in `ls`; 
-    do 
+  for i in `ls`;
+    do
       j=`basename -s '.png' $i`;
       convert -density 300 $i $j.eps;
   done
