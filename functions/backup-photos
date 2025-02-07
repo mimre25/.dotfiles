@@ -12,9 +12,9 @@ phone_path="/run/user/1000/gvfs/mtp:host=OnePlus_OnePlus_f2a853d1/Internal share
 
 # mkdir ~/Pictures/${last_month}/;
 # find ${phone_path} -newermt "${last_month}-01T00:00" -and ! -newermt "${this_month}-01" -exec mv {} ~/Pictures/${last_month} \;
-find ${phone_path} -newermt "${last_month}-01T00:00" -and ! -newermt "${this_month}-01" -exec rsync -azh --remove-source-files --info=progress2 --info=flist {} ~/Pictures/${last_month} \;
+find ${phone_path} -newermt "${last_month}-01T00:00" -and ! -newermt "${this_month}-01" -exec rsync -azh --remove-source-files --info=progress2 {} ~/Pictures/${last_month} \;
 
-rsync -azh --info=progress2 --info=flist ~/Pictures/${last_month} "/media/martin/Ext SSD/${last_year}/";
+rsync -azh --info=progress2 ~/Pictures/${last_month} "/run/media/martin/Ext SSD/${last_year}/";
 #cp -r ~/Pictures/${last_month} "/media/martin/Ext SSD/${last_year}/";
 
 
