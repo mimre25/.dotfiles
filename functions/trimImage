@@ -1,0 +1,5 @@
+  filename=$(basename -- "$1");
+  extension="${filename##*.}";
+  filename="${filename%.*}";
+  convert $1 -trim out.${extension};
+  mv out.${extension} $1; 

@@ -1,0 +1,12 @@
+  # Test to be sure user supplied a parameter; error if not
+  if [ $# -eq 0 ]; then
+        echo "Please supply the name of a .webloc file to open"
+            exit
+            fi
+  
+  # Extract URL from webloc file
+  URL=$(xmllint --xpath "string(//string)" "$1")
+  
+  echo $URL;
+  # Open $URL in Firefox
+  google-chrome-stable $URL &
