@@ -4,8 +4,9 @@ import requests
 import sys
 
 
-STAND_HEIGHT = 98
+STAND_HEIGHT = 93
 SIT_HEIGHT = 60.2
+BALL_HEIGHT = 63.5
 MIN_HEIGHT = 58.45
 MAX_HEIGHT = 118.74
 
@@ -14,7 +15,8 @@ MODES = {
     "stand": STAND_HEIGHT,
     "sit": SIT_HEIGHT,
     "max": MAX_HEIGHT,
-    "min": MIN_HEIGHT
+    "min": MIN_HEIGHT,
+    "ball": BALL_HEIGHT,
 }
 
 
