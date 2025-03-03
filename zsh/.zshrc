@@ -131,7 +131,7 @@ fi
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-export TOX_DISCOVER="/home/martin/micromamba/envs/py37/bin /home/martin/micromamba/envs/py38/bin /home/martin/micromamba/envs/py39/bin /home/martin/micromamba/envs/py310/bin /home/martin/micromamba/envs/py311/bin /home/martin/micromamba/envs/py312/bin"
+export TOX_DISCOVER="/home/martin/micromamba/envs/py37/bin/python;/home/martin/micromamba/envs/py38/bin/python;/home/martin/micromamba/envs/py39/bin/python;/home/martin/micromamba/envs/py310/bin/python;/home/martin/micromamba/envs/py311/bin/python;/home/martin/micromamba/envs/py312/bin/python;/home/martin/micromamba/envs/py313/bin/python"
 
 
 # >>> mamba initialize >>>
