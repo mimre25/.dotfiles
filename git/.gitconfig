@@ -11,6 +11,10 @@
 
 [diff]
     submodule = log
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 
 [gpg]
     format = ssh
@@ -26,6 +30,7 @@
 
 [rerere]
     enabled = true
+    autoupdate = true
 
 [status]
     submoduleSummary = true
@@ -50,3 +55,11 @@
 
 [include]
     path = ~/.private/git/.gitconfig
+[branch]
+    sort = -committerdate
+[column]
+    ui = auto
+[tag]
+    sort = version:refname
+[rebase]
+    updateRefs = true
