@@ -1,0 +1,21 @@
+#! /bin/zsh
+
+set -x
+
+level=$(brightnessctl -m i | awk -F '[,%]' '{print $4 }');
+
+step=5;
+
+direction=$1;
+
+limit=10;
+
+if [ $direction = "+" ]; then
+    limit=9;
+fi;
+
+if [ $level -le $limit ]; then
+    step=1;
+fi;
+
+brightnessctl s ${step}%${direction}
