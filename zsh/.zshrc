@@ -246,6 +246,9 @@ function git_add_staged_patch() {
     git add -p $files;
 }
 
+
+
+alias graf='git remote add fork git@github.com:mimre25/$(basename $(git config --get remote.origin.url))'
 alias gpsuf='git push --set-upstream fork $(git_current_branch)'
 alias gcfib='git fixup --base closest'
 alias gcfi='git fixup'
