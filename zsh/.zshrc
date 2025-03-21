@@ -72,7 +72,8 @@ HISTSIZE=1000000
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git fzf command-not-found colored-man-pages timer) #conda-zsh-completion)
 TIMER_FORMAT='[%d]';
-TIMER_PRECISION=2
+TIMER_PRECISION=2;
+TIMER_THRESHOLD=60;
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
