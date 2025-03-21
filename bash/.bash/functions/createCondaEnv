@@ -4,7 +4,7 @@ set -euox pipefail;
 
 PYTHON="python"
 if [ -f "Dockerfile" ]; then
-    PYTHON=$(grep "FROM python" Dockerfile | sed 's/FROM \(python:[^- ]*\).*/\1/g')
+    PYTHON=$(grep "FROM python" Dockerfile | head -n1 | sed 's/FROM \(python:[^- ]*\).*/\1/g')
     echo "Found python version: ${PYTHON}"
 fi
 
