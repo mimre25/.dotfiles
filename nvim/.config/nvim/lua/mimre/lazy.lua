@@ -199,21 +199,7 @@ require("lazy").setup({
 		end,
 	},
 
-	-- colorschemes
-	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-	},
-	{
-		"folke/tokyonight.nvim",
-		opts = {},
-	},
-
-	{ "catppuccin/nvim", name = "catppuccin" },
-	{ "rebelot/kanagawa.nvim" },
-	{
-		"baliestri/aura-theme",
-	},
+	-- colorscheme
 	{
 		"EdenEast/nightfox.nvim",
 		lazy = false,
@@ -222,14 +208,7 @@ require("lazy").setup({
 			vim.cmd([[colorscheme duskfox]])
 		end,
 	},
-	{ "navarasu/onedark.nvim" },
 
-	{ "bluz71/vim-nightfly-colors", name = "nightfly" },
-	{ "bluz71/vim-moonfly-colors", name = "moonfly" },
-
-	-- enough colorschemes
-	--
-	--
 	-- highlighting todos
 
 	{
