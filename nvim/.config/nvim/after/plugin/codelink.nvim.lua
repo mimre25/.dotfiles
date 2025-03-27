@@ -1,5 +1,5 @@
 require("code-link").setup({
 	copy_command = function(link)
-		return 'echo "' .. link .. '" | xclip -selection clipboard -in &> /dev/null'
+		return 'echo "' .. link .. '" | wl-copy'
 	end,
 })
