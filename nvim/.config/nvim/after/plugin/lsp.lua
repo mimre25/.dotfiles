@@ -120,6 +120,9 @@ lspconfig.volar.setup({
 })
 
 lspconfig.pbls.setup({})
+lspconfig.clangd.setup({})
+
+lspconfig.gopls.setup({})
 
 lsp.set_preferences({
 	suggest_lsp_servers = false,
