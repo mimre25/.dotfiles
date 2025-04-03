@@ -35,6 +35,10 @@ require("lazy").setup({
 			ts_update()
 		end,
 	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+	},
 	{ "nvim-treesitter/playground" },
 	{
 		"ThePrimeagen/harpoon",
@@ -331,11 +335,5 @@ require("lazy").setup({
 		"luckasRanarison/tailwind-tools.nvim",
 		name = "tailwind-tools",
 		build = ":UpdateRemotePlugins",
-	},
-
-	-- swap functions params
-	{
-		"mizlan/iswap.nvim",
-		event = "VeryLazy",
 	},
 })
