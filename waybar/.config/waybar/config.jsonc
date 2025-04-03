@@ -14,6 +14,7 @@
         "custom/keyboard",
         "pulseaudio",
         "network",
+        "disk",
         "cpu",
         "memory",
         "temperature",
@@ -108,5 +109,9 @@
         "exec-if": "test -e /dev/ttyACM0",
         "format": "{}",
         "on-click": "bazecor"
+    },
+
+    "disk": {
+        "format": "{free}"
     }
 }

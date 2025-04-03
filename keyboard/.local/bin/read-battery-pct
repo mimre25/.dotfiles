@@ -34,7 +34,7 @@ def status_icon(status):
     if status == BatteryStatus.CHARGING:
         return "󱐋"
     if status == BatteryStatus.FULL:
-        return f"{COLOR_PRIMARY}󱐋{COLOR_FOREGROUND}"
+        return f"✨"
 
     return ""
 
