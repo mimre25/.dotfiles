@@ -134,11 +134,16 @@ lsp.set_preferences({
 	},
 })
 
+local function on_list(options)
+  vim.fn.setqflist({}, ' ', options)
+  vim.cmd.cfirst()
+end
+
 lsp.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
 	vim.keymap.set("n", "gd", function()
-		vim.lsp.buf.definition()
+		vim.lsp.buf.definition({on_list = on_list})
 	end, opts)
 	vim.keymap.set("n", "K", function()
 		vim.lsp.buf.hover()
