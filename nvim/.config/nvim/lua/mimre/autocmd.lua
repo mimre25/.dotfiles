@@ -42,6 +42,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 			higroup = "IncSearch",
 			timeout = 40,
 		})
+		vim.api.nvim_command("wshada") -- Share yank register across instances
+	end,
+})
+vim.api.nvim_create_autocmd("FocusGained", {
+	pattern = "*",
+	callback = function()
+		vim.api.nvim_command("rshada") -- Share yank register across instances
 	end,
 })
 
