@@ -246,6 +246,11 @@ function git_add_staged_patch() {
     git add -p $files;
 }
 
+function git_show_interactive() {
+    # copied from ~/.gitconfig [fixup]
+    sha=$(glog --color=always | fzf --ansi --height '100%' --bind 'tab:toggle-preview' --preview 'git show --color {2}' --preview-window=up:60% --accept-nth 2)
+    git show $sha
+}
 
 
 alias graf='git remote add fork git@github.com:mimre25/$(basename $(git config --get remote.origin.url))'
@@ -258,7 +263,8 @@ alias gasp='git_add_staged_patch'
 
 
 alias cat='bat'
-alias cat!=/usr/bin/cat
+alias cat!='/usr/bin/cat'
+alias gshi='git_show_interactive'
 
 # bun completions
 [ -s "/home/martin/.bun/_bun" ] && source "/home/martin/.bun/_bun"
