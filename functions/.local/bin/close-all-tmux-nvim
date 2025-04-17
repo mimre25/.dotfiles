@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Send `Escape :qa Enter` to all neovim instances in all tmux panes over all sessions and windows
+pane_format="#{session_name}:#{window_index}.#{pane_index} #{pane_current_command}"
+for pane in $(tmux list-panes -a -F "${pane_format}" | grep "nvim" | awk '{print $1}'); do
+    tmux send-keys -t "${pane}" Escape ":" "q" "a" Enter;
+done
