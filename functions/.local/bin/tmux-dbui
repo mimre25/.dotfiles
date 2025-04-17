@@ -1,0 +1,17 @@
+#!/bin/bash
+
+current_session=$(tmux display-message -p "#S")
+if [ "${current_session}" = "DBUI" ]; then
+    tmux switch-client -l
+else
+    tmux list-sessions | grep -E "^DBUI" -q
+    if [[ $? -eq 1 ]]; then
+        tmux new-session -d -A -s "DBUI"
+        tmux send-keys -t "DBUI:0.0" "nvim +DBUI" Enter
+    fi
+    if [[ -n "${TMUX}" ]]; then
+        tmux switch-client -t "DBUI"
+    else
+        tmux attach-session -t "DBUI"
+    fi
+fi
