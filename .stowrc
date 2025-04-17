@@ -1,2 +1,4 @@
 --target=/home/martin
 --ignore="install.sh"
+--ignore="personal"
+--ignore="work"
