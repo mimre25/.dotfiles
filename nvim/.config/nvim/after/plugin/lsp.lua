@@ -134,16 +134,36 @@ lsp.set_preferences({
 	},
 })
 
-local function on_list(options)
-  vim.fn.setqflist({}, ' ', options)
-  vim.cmd.cfirst()
+local function removeDuplicates(inputList)
+	local seen = {}
+	local unique = {}
+
+	local function itemToStr(item)
+		return item.filename .. item.lnum .. item.end_lnum .. item.col .. item.end_col
+	end
+
+	for _, item in ipairs(inputList["items"]) do
+		if not seen[itemToStr(item)] then
+			unique[#unique + 1] = item
+			seen[itemToStr(item)] = true
+		end
+	end
+
+	inputList["items"] = unique
+	if #inputList["items"] > 1 then
+		vim.fn.setqflist({}, " ", inputList)
+		vim.cmd("copen")
+	else
+		vim.fn.setqflist({}, " ", inputList)
+		vim.cmd.cfirst()
+	end
 end
 
 lsp.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
 	vim.keymap.set("n", "gd", function()
-		vim.lsp.buf.definition({on_list = on_list})
+		vim.lsp.buf.definition({ on_list = removeDuplicates })
 	end, opts)
 	vim.keymap.set("n", "K", function()
 		vim.lsp.buf.hover()
@@ -167,7 +187,7 @@ lsp.on_attach(function(client, bufnr)
 		vim.lsp.buf.references()
 	end, opts)
 	vim.keymap.set("n", "gr", function()
-		vim.lsp.buf.references()
+		vim.lsp.buf.references(nil, { on_list = removeDuplicates })
 	end, opts)
 	vim.keymap.set("n", "<leader>vrn", function()
 		vim.lsp.buf.rename()
