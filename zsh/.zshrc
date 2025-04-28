@@ -248,7 +248,7 @@ function git_add_staged_patch() {
 
 function git_show_interactive() {
     # copied from ~/.gitconfig [fixup]
-    sha=$(glog --color=always | fzf --ansi --height '100%' --bind 'tab:toggle-preview' --preview 'git show --color {2}' --preview-window=up:60% --accept-nth 2)
+    sha=$(glo --color=always | fzf --ansi --height '100%' --bind 'tab:toggle-preview' --preview 'git show --color {1}' --preview-window=up:60% --accept-nth 1)
     git show $sha
 }
 
