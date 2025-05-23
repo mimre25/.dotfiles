@@ -276,3 +276,5 @@ export PATH="$PATH:${HOME}/go/bin/"
 
 
 alias dbui="nvim +DBUI"
+
+export UV_EXTRA_INDEX_URL=$PIP_EXTRA_INDEX_URL
