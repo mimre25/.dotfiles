@@ -6,8 +6,8 @@ if [ "${current_session}" = "DBUI" ]; then
 else
     tmux list-sessions | grep -E "^DBUI" -q
     if [[ $? -eq 1 ]]; then
-        tmux new-session -d -A -s "DBUI"
-        tmux send-keys -t "DBUI:0.0" "nvim +DBUI" Enter
+        tmux new-session -d -A -s "DBUI" -c ~ "nvim +DBUI"
+        # tmux send-keys -t "DBUI:0.0"
     fi
     if [[ -n "${TMUX}" ]]; then
         tmux switch-client -t "DBUI"
