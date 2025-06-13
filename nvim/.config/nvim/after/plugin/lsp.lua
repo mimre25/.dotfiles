@@ -14,7 +14,6 @@ require("mason-lspconfig").setup({
 		"pylsp",
 		"tailwindcss",
 		"ts_ls",
-		"volar",
 		"yamlls",
 	},
 	handlers = {
@@ -111,13 +110,6 @@ lspconfig.ts_ls.setup({
 	},
 })
 lspconfig.tailwindcss.setup({})
--- lspconfig.vuels.setup({
--- 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
--- 	capabilities = capabilities,
--- })
-lspconfig.volar.setup({
-	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
-})
 
 lspconfig.pbls.setup({})
 lspconfig.clangd.setup({})
