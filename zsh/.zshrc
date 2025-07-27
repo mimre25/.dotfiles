@@ -252,6 +252,12 @@ function git_show_interactive() {
     git show $sha
 }
 
+function git_diff_interactive() {
+    # copied from ~/.gitconfig [fixup]
+    sha=$(glo --color=always | fzf --ansi --height '100%' --bind 'tab:toggle-preview' --preview 'git show --color {1}' --preview-window=up:60% --accept-nth 1)
+    git diff $sha
+}
+
 
 alias graf='git remote add fork git@github.com:mimre25/$(basename $(git config --get remote.origin.url))'
 alias gpsuf='git push --set-upstream fork $(git_current_branch)'
@@ -265,6 +271,7 @@ alias gasp='git_add_staged_patch'
 alias cat='bat'
 alias cat!='/usr/bin/cat'
 alias gshi='git_show_interactive'
+alias gdi='git_diff_interactive'
 
 # bun completions
 [ -s "/home/martin/.bun/_bun" ] && source "/home/martin/.bun/_bun"
