@@ -55,12 +55,16 @@ dap.configurations.php = {
 		request = "launch",
 		name = "Listen for XDebug",
 		port = 9003,
-		stopOnEntry = true,
-		xdebugSettings = {
-			max_children = 512,
-			max_data = 1024,
-			max_depth = 4,
+		stopOnEntry = false,
+		pathMappings = {
+			["/app"] = "${workspaceFolder}",
 		},
+		-- xdebugSettings = {
+		-- 	max_children = 512,
+		-- 	max_data = 1024,
+		-- 	max_depth = 4,
+		-- },
+
 		-- breakpoints = {
 		--     exception = {
 		--         Notice = false,
