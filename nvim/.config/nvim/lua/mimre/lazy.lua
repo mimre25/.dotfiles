@@ -177,20 +177,39 @@ require("lazy").setup({
 	{ "Myzel394/jsonfly.nvim" },
 
 	-- laravel
+	-- {
+	-- 	"adalessa/laravel.nvim",
+	-- 	dependencies = {
+	-- 		"tpope/vim-dotenv",
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"nvimtools/none-ls.nvim",
+	-- 		"kevinhwang91/promise-async",
+	-- 	},
+	-- 	cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
+	-- 	opts = {
+	-- 		lsp_server = "intelephense",
+	-- 	},
+	-- 	event = { "VeryLazy" },
+	-- 	config = true,
+	-- },
+	--
 	{
-		"adalessa/laravel.nvim",
+		"adibhanna/laravel.nvim",
 		dependencies = {
-			"tpope/vim-dotenv",
 			"MunifTanjim/nui.nvim",
-			"nvimtools/none-ls.nvim",
-			"kevinhwang91/promise-async",
+			"nvim-lua/plenary.nvim",
 		},
-		cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
-		opts = {
-			lsp_server = "intelephense",
-		},
+		-- cmd = { "Artisan", "Composer", "Laravel*" },
+		-- keys = {
+		--     { "<leader>la", ":Artisan<cr>", desc = "Laravel Artisan" },
+		--     { "<leader>lc", ":Composer<cr>", desc = "Composer" },
+		--     { "<leader>lr", ":LaravelRoute<cr>", desc = "Laravel Routes" },
+		--     { "<leader>lm", ":LaravelMake<cr>", desc = "Laravel Make" },
+		-- },
 		event = { "VeryLazy" },
-		config = true,
+		config = function()
+			require("laravel").setup()
+		end,
 	},
 
 	-- tets-coverage display
