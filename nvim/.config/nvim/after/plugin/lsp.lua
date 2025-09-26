@@ -1,32 +1,71 @@
-local lsp = require("lsp-zero")
-
-lsp.preset("recommended")
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local lsps = {
+	"ansiblels",
+	"eslint",
+	"html",
+	"jsonls",
+	"lua_ls",
+	"pylsp",
+	"tailwindcss",
+	"ts_ls",
+	"yamlls",
+	"intelephense",
+	"ts_ls",
+}
 
 require("mason").setup({})
-require("mason-lspconfig").setup({
-	ensure_installed = {
-		"ansiblels",
-		"eslint",
-		"html",
-		"jsonls",
-		"lua_ls",
-		"pylsp",
-		"tailwindcss",
-		"ts_ls",
-		"yamlls",
-	},
-	handlers = {
-		lsp.default_setup,
-		lua_ls = function()
-			local lua_opts = lsp.nvim_lua_ls()
-			require("lspconfig").lua_ls.setup(lua_opts)
-		end,
+require("mason-lspconfig").setup({ ensure_installed = lsps })
+
+--- copied from lsp config
+vim.lsp.config("lua_ls", {
+	on_init = function(client)
+		if client.workspace_folders then
+			local path = client.workspace_folders[1].name
+			if
+				path ~= vim.fn.stdpath("config")
+				and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+			then
+				return
+			end
+		end
+
+		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most
+				-- likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+				-- Tell the language server how to find Lua modules same way as Neovim
+				-- (see `:h lua-module-load`)
+				path = {
+					"lua/?.lua",
+					"lua/?/init.lua",
+				},
+			},
+			-- Make the server aware of Neovim runtime files
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME,
+					-- Depending on the usage, you might want to add additional paths
+					-- here.
+					-- '${3rd}/luv/library'
+					-- '${3rd}/busted/library'
+				},
+				-- Or pull in all of 'runtimepath'.
+				-- NOTE: this is a lot slower and will cause issues when working on
+				-- your own configuration.
+				-- See https://github.com/neovim/nvim-lspconfig/issues/3189
+				-- library = {
+				--   vim.api.nvim_get_runtime_file('', true),
+				-- }
+			},
+		})
+	end,
+	settings = {
+		Lua = {},
 	},
 })
-local lspconfig = require("lspconfig")
 
-lspconfig.ansiblels.setup({
+vim.lsp.config("ansiblels", {
 	ansible = {
 		path = "ansible",
 	},
@@ -44,12 +83,8 @@ lspconfig.ansiblels.setup({
 		},
 	},
 })
-lspconfig.sqls.setup({ capabilities = capabilities })
-lspconfig.marksman.setup({ capabilities = capabilities })
-lspconfig.rust_analyzer.setup({ capabilities = capabilities })
-lspconfig.marksman.setup({ capabilities = capabilities })
-lspconfig.pylsp.setup({
-	capabilities = capabilities,
+
+vim.lsp.config("pylsp", {
 	settings = {
 		pylsp = {
 			plugins = {
@@ -61,38 +96,7 @@ lspconfig.pylsp.setup({
 	},
 })
 
--- copied form jess archer
--- https://github.com/jessarcher/dotfiles/blob/ef692c35d64db2c13674dfc850a23b6acf9e8f91/nvim/lua/user/plugins/lspconfig.lua#L25
-lspconfig.intelephense.setup({
-	-- commands = {
-	--   IntelephenseIndex = {
-	--     function()
-	--       vim.lsp.buf.execute_command({ command = 'intelephense.index.workspace' })
-	--     end,
-	--   },
-	-- },
-	-- on_attach = function(client, bufnr)
-	-- client.server_capabilities.documentFormattingProvider = false
-	-- client.server_capabilities.documentRangeFormattingProvider = false
-	-- if client.server_capabilities.inlayHintProvider then
-	--   vim.lsp.buf.inlay_hint(bufnr, true)
-	-- end
-	-- end,
-	capabilities = capabilities,
-})
-
--- lspconfig.phpactor.setup({ capabilities = capabilities })
--- lspconfig.vuels.setup({
--- 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
--- 	capabilities = capabilities,
--- })
-lspconfig.jsonls.setup({})
-
-lspconfig.elixirls.setup({
-	cmd = { "/home/martin/.local/share/nvim/mason/bin/elixir-ls" },
-})
-
-lspconfig.ts_ls.setup({
+vim.lsp.config("ts_ls", {
 	init_options = {
 		plugins = {
 			{
@@ -107,22 +111,6 @@ lspconfig.ts_ls.setup({
 		"javascript",
 		"typescript",
 		"vue",
-	},
-})
-lspconfig.tailwindcss.setup({})
-
-lspconfig.pbls.setup({})
-lspconfig.clangd.setup({})
-
-lspconfig.gopls.setup({})
-
-lsp.set_preferences({
-	suggest_lsp_servers = false,
-	sign_icons = {
-		error = "E",
-		warn = "W",
-		hint = "H",
-		info = "I",
 	},
 })
 
@@ -151,54 +139,43 @@ local function removeDuplicates(inputList)
 	end
 end
 
-lsp.on_attach(function(client, bufnr)
-	local opts = { buffer = bufnr, remap = false }
-
-	vim.keymap.set("n", "gd", function()
-		vim.lsp.buf.definition({ on_list = removeDuplicates })
-	end, opts)
-	vim.keymap.set("n", "K", function()
-		vim.lsp.buf.hover()
-	end, opts)
-	vim.keymap.set("n", "<leader>vws", function()
-		vim.lsp.buf.workspace_symbol()
-	end, opts)
-	vim.keymap.set("n", "<leader>vd", function()
-		vim.diagnostic.open_float()
-	end, opts)
-	vim.keymap.set("n", "[d", function()
-		vim.diagnostic.goto_next()
-	end, opts)
-	vim.keymap.set("n", "]d", function()
-		vim.diagnostic.goto_prev()
-	end, opts)
-	vim.keymap.set("n", "<leader>vca", function()
-		vim.lsp.buf.code_action()
-	end, opts)
-	vim.keymap.set("n", "<leader>vrr", function()
-		vim.lsp.buf.references()
-	end, opts)
-	vim.keymap.set("n", "gr", function()
-		vim.lsp.buf.references(nil, { on_list = removeDuplicates })
-	end, opts)
-	vim.keymap.set("n", "<leader>vrn", function()
-		vim.lsp.buf.rename()
-	end, opts)
-	vim.keymap.set("i", "<C-q>", function()
-		vim.lsp.buf.signature_help()
-	end, opts)
-	-- Show diagnostics
-	vim.keymap.set("n", "<leader>e", function()
-		-- need to call twice to jump into float window
-		vim.diagnostic.open_float()
-		vim.diagnostic.open_float()
-	end, opts)
-	vim.keymap.set("n", "<leader>Q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+vim.keymap.set("n", "gd", function()
+	vim.lsp.buf.definition({ on_list = removeDuplicates })
 end)
-
-lsp.setup()
+vim.keymap.set("n", "K", function()
+	vim.lsp.buf.hover()
+end)
+vim.keymap.set("n", "<leader>vws", function()
+	vim.lsp.buf.workspace_symbol()
+end)
+vim.keymap.set("n", "<leader>vd", function()
+	vim.diagnostic.open_float()
+end)
+vim.keymap.set("n", "<leader>vca", function()
+	vim.lsp.buf.code_action()
+end)
+vim.keymap.set("n", "gr", function()
+	vim.lsp.buf.references(nil, { on_list = removeDuplicates })
+end)
+vim.keymap.set("n", "<leader>rn", function()
+	vim.lsp.buf.rename()
+end)
+vim.keymap.set("i", "<C-q>", function()
+	vim.lsp.buf.signature_help()
+end)
+-- Show diagnostics
+vim.keymap.set("n", "<leader>e", function()
+	-- need to call twice to jump into float window
+	vim.diagnostic.open_float()
+	vim.diagnostic.open_float()
+end)
+vim.keymap.set("n", "<leader>Q", "<cmd>lua vim.diagnostic.setloclist()<CR>")
 
 vim.diagnostic.config({
 	virtual_text = true,
 	virtual_lines = false,
 })
+
+for _, lsp in pairs(lsps) do
+	vim.lsp.enable(lsp)
+end
