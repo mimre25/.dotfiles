@@ -302,4 +302,15 @@ require("lazy").setup({
 		name = "tailwind-tools",
 		build = ":UpdateRemotePlugins",
 	},
+
+	-- sql formatting
+	{
+		"andev0x/sql-formatter.nvim",
+		ft = { "sql", "mysql", "plsql", "pgsql" },
+		config = function()
+			vim.g.sqlformat_command = "sql-formatter"
+			vim.g.sqlformat_options = "-r -k upper"
+			vim.g.sqlformat_prog = "sql-formatter"
+		end,
+	},
 })
