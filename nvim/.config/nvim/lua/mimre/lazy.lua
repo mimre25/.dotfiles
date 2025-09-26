@@ -2,34 +2,19 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{
-		"folke/which-key.nvim",
-		config = {
-			delay = 1000,
-		},
-	},
-	"folke/neodev.nvim",
+	"folke/lazydev.nvim",
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-
 	{
-		"folke/trouble.nvim",
-		config = function()
-			require("trouble").setup({
-				icons = false,
-				-- your configuration comes here
-				-- or leave it empty to  the default settings
-				-- refer to the configuration section below
-			})
-		end,
+		"mimre25/tmux-telescope-picker.nvim",
 	},
-
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{
 		"nvim-treesitter/nvim-treesitter",
-		tag = "v0.9.3",
+		tag = "v0.10.0",
 		build = function()
 			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
 			ts_update()
@@ -39,6 +24,7 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
+	{ "nvim-treesitter/nvim-treesitter-context" },
 	{ "nvim-treesitter/playground" },
 	{
 		"ThePrimeagen/harpoon",
@@ -48,9 +34,19 @@ require("lazy").setup({
 	{ "theprimeagen/refactoring.nvim" },
 	{ "mbbill/undotree" },
 	{ "tpope/vim-fugitive" },
-	{ "nvim-treesitter/nvim-treesitter-context" },
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
+	{
+		"mason-org/mason.nvim",
+		opts = {},
+	},
+	{
+		"mason-org/mason-lspconfig.nvim",
+		opts = {},
+		dependencies = {
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
+		},
+	},
 	{ "hrsh7th/cmp-cmdline" },
 	-- Autocompletion
 	--
@@ -73,23 +69,6 @@ require("lazy").setup({
 			{ "rafamadriz/friendly-snippets" },
 		},
 	},
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v3.x",
-		dependencies = {
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
-		},
-	},
-
-	{
-		"smjonas/inc-rename.nvim",
-		config = function()
-			require("inc_rename").setup()
-		end,
-	},
 
 	{
 		"kylechui/nvim-surround",
@@ -107,7 +86,6 @@ require("lazy").setup({
 	},
 	{ "mfussenegger/nvim-dap-python" },
 	{ "rcarriga/cmp-dap" },
-	{ "folke/neodev.nvim", opts = {} },
 	{ "pearofducks/ansible-vim" },
 
 	{ "numToStr/Comment.nvim" }, -- allow commenting lines easily
@@ -129,9 +107,6 @@ require("lazy").setup({
 			-- { dir = "~/workspace/neotest-phpunit" },
 		},
 	},
-
-	-- easily save macros
-	{ "jesseleite/nvim-macroni" },
 
 	-- 3-way diffs and what not
 	{ "sindrets/diffview.nvim" },
@@ -155,26 +130,8 @@ require("lazy").setup({
 		opts = {},
 	},
 
-	-- keep track of yanks
-	{
-		"ptdewey/yankbank-nvim",
-		config = function()
-			require("yankbank").setup()
-		end,
-	},
-
 	-- handling diffs
 	{ "akinsho/git-conflict.nvim", version = "*", config = true },
-
-	{
-		"NStefan002/screenkey.nvim",
-		cmd = "Screenkey",
-		version = "*",
-		config = true,
-		lazy = true,
-	},
-	-- json exploration
-	{ "Myzel394/jsonfly.nvim" },
 
 	-- laravel
 	-- {
@@ -244,13 +201,6 @@ require("lazy").setup({
 		},
 	},
 
-	-- tmux session picker telescope
-	-- {
-	--     { dir = "~/workspace/tmux-telescope-plugin.nvim" }
-	-- },
-	{
-		"mimre25/tmux-telescope-picker.nvim",
-	},
 	-- cheatsheet for vim commands
 	{
 		"doctorfree/cheatsheet.nvim",
@@ -316,9 +266,6 @@ require("lazy").setup({
 		---@type ibl.config
 		opts = {},
 	},
-
-	-- check keymaps
-	{ "meznaric/key-analyzer.nvim", opts = {} },
 
 	-- laravel ide helper
 	{

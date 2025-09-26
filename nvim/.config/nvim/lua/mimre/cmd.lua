@@ -52,3 +52,15 @@ vim.api.nvim_create_user_command("DiffWithSaved", function()
 end, {})
 
 vim.keymap.set("n", "<leader>ds", "<cmd>DiffWithSaved<cr>", { remap = false, silent = true })
+
+vim.keymap.set("n", "<leader>j", function()
+	if vim.bo.filetype == "" then
+		vim.api.nvim_create_autocmd("LspAttach", {
+			callback = function(args)
+				vim.lsp.buf.format()
+			end,
+			buffer = vim.api.nvim_get_current_buf(),
+		})
+		vim.bo.filetype = "json"
+	end
+end)
