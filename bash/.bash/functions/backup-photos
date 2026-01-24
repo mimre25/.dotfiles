@@ -8,11 +8,13 @@ last_year=$(date -d 'a month ago' +%Y);
 
 mkdir ~/Pictures/${last_month} || true;
 
-phone_path="/run/user/1000/gvfs/mtp:host=OnePlus_OnePlus_f2a853d1/Internal shared storage/DCIM/"
+phone_path="/run/user/1000/gvfs/mtp:host=Google_Pixel_9a_53251JEBF15911/Internal shared storage/DCIM/"
+echo $phone_path;
+echo $last_month
+echo $this_month
 
 # mkdir ~/Pictures/${last_month}/;
-# find ${phone_path} -newermt "${last_month}-01T00:00" -and ! -newermt "${this_month}-01" -exec mv {} ~/Pictures/${last_month} \;
-find ${phone_path} -newermt "${last_month}-01T00:00" -and ! -newermt "${this_month}-01" -exec rsync -azh --remove-source-files --info=progress2 {} ~/Pictures/${last_month} \;
+find ${phone_path} -newermt "${last_month}-01T00:00" -and \! -newermt "${this_month}-01" -exec rsync -azh --info=progress2 {} ~/Pictures/${last_month} \;
+# find ${phone_path} -newermt "${last_month}-01T00:00" -and \\! -newermt "${this_month}-01" -exec rsync -azh --remove-source-files --info=progress2 {} ~/Pictures/${last_month} \;
 
 rsync -azh --info=progress2 ~/Pictures/${last_month} "/run/media/martin/Ext SSD/${last_year}/";
-#cp -r ~/Pictures/${last_month} "/media/martin/Ext SSD/${last_year}/";
