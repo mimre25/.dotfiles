@@ -1,3 +1,5 @@
 window-decoration = false
 font-feature = -calt
 theme = Dark Pastel
+keybind = unconsumed:ctrl+enter=unbind
+gtk-single-instance = false
