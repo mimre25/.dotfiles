@@ -1,0 +1,25 @@
+#!/bin/bash
+# set -x
+
+setup=$1;
+dir=/home/martin/.dotfiles/hypr/.config/hypr;
+
+if [ -z "${setup}" ]; then
+    echo "Need to provide a dock, eg 'home' or 'office'";
+    exit 1;
+fi
+
+if [ "${setup}" = "office" ]; then
+    cp ${dir}/monitors-office ${dir}/monitors;
+    cp ${dir}/workspaces-office ${dir}/workspaces;
+
+elif [ "${setup}" = "home" ]; then
+    cp ${dir}/monitors-home ${dir}/monitors;
+    cp ${dir}/workspaces-home ${dir}/workspaces;
+else
+    echo "Unknown dock ${setup}. Available docks: 'home', 'office'.";
+    exit 1;
+fi
+
+killall waybar;
+hyprctl dispatch exec waybar;
