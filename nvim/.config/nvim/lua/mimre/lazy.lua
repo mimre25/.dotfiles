@@ -5,7 +5,6 @@ require("lazy").setup({
 	"folke/lazydev.nvim",
 	{
 		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{
@@ -14,18 +13,15 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{
 		"nvim-treesitter/nvim-treesitter",
-		tag = "v0.10.0",
-		build = function()
-			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-			ts_update()
-		end,
+		lazy = false,
+		build = ":TSUpdate",
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 	{ "nvim-treesitter/nvim-treesitter-context" },
-	{ "nvim-treesitter/playground" },
+	-- { "nvim-treesitter/playground" },
 	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
