@@ -10,12 +10,12 @@ if [ -z "${setup}" ]; then
 fi
 
 if [ "${setup}" = "office" ]; then
-    cp ${dir}/monitors-office ${dir}/monitors;
-    cp ${dir}/workspaces-office ${dir}/workspaces;
+    cp ${dir}/monitors-office.conf ${dir}/monitors.conf;
+    cp ${dir}/workspaces-office.conf ${dir}/workspaces.conf;
 
 elif [ "${setup}" = "home" ]; then
-    cp ${dir}/monitors-home ${dir}/monitors;
-    cp ${dir}/workspaces-home ${dir}/workspaces;
+    cp ${dir}/monitors-home.conf ${dir}/monitors.conf;
+    cp ${dir}/workspaces-home.conf ${dir}/workspaces.conf;
 else
     echo "Unknown dock ${setup}. Available docks: 'home', 'office'.";
     exit 1;

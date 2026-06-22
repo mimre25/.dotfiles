@@ -40,6 +40,7 @@ statuses="100 Continue
 416 Request Range Not Satisfiable
 417 Expectation Failed
 418 I'm a teapot
+419 Page expired (Laravel?)
 420 Blaze it
 422 Unprocessable Entity
 423 Locked

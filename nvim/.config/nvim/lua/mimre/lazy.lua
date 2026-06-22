@@ -84,7 +84,8 @@ require("lazy").setup({
 	{ "rcarriga/cmp-dap" },
 	{ "pearofducks/ansible-vim" },
 
-	{ "numToStr/Comment.nvim" }, -- allow commenting lines easily
+	{ "nvim-mini/mini.comment", version = "*" }, -- allow commenting lines easily
+
 	{ -- test runner
 		"nvim-neotest/neotest",
 		-- dir = "~/workspace/neotest",
