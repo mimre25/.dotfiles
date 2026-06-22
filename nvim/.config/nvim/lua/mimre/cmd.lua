@@ -64,3 +64,20 @@ vim.keymap.set("n", "<leader>j", function()
 		vim.bo.filetype = "json"
 	end
 end)
+
+-- Run mypy thanks chatGPT
+vim.api.nvim_create_user_command("MypyQuickfix", function()
+	vim.bo.errorformat = "%f:%l:%c: %m"
+	local lines = vim.fn.systemlist("mypy --show-column-numbers --no-color .")
+	local rc = vim.v.shell_error
+	if rc == 0 then
+		vim.fn.setqflist({}, "r", { title = "mypy" }) -- clear qf
+		vim.notify("mypy: no issues", vim.log.levels.INFO)
+		return
+	end
+	-- feed lines into quickfix (parsed by errorformat)
+	lines[#lines] = nil -- we don't want the last line that says "69 errors found"
+	vim.fn.setqflist({}, " ", { title = "mypy", lines = lines })
+	vim.cmd("copen")
+end, {})
+--
