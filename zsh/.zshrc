@@ -252,6 +252,10 @@ function git_show_interactive() {
     git show $sha
 }
 
+function git_pick_interactive() {
+    glo --color=always | fzf --ansi --height '100%' --bind 'tab:toggle-preview' --preview 'git show --color {1}' --preview-window=up:60% --accept-nth 1 | clipcopy
+}
+
 function git_diff_interactive() {
     # copied from ~/.gitconfig [fixup]
     sha=$(glo --color=always | fzf --ansi --height '100%' --bind 'tab:toggle-preview' --preview 'git show --color {1}' --preview-window=up:60% --accept-nth 1)
@@ -266,6 +270,7 @@ alias gcfi='git fixup'
 alias gras='git diff --cached  --name-only | xargs git restore --staged'
 alias gas='git diff --cached  --name-only | xargs git add'
 alias gasp='git_add_staged_patch'
+alias gpi='git_pick_interactive'
 
 
 alias cat='bat'
