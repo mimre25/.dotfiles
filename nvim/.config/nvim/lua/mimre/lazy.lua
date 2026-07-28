@@ -27,7 +27,7 @@ require("lazy").setup({
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	{ "theprimeagen/refactoring.nvim" },
+	{ "theprimeagen/refactoring.nvim", dependencies = { "lewis6991/async.nvim" } },
 	{ "mbbill/undotree" },
 	{ "tpope/vim-fugitive" },
 
@@ -310,4 +310,6 @@ require("lazy").setup({
 			vim.g.sqlformat_prog = "sql-formatter"
 		end,
 	},
+}, {
+	rocks = { enabled = false },
 })

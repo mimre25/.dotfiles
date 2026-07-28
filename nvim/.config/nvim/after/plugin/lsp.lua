@@ -12,7 +12,15 @@ local lsps = {
 	"ts_ls",
 }
 
-require("mason").setup({})
+require("mason").setup({
+	registries = {
+		"github:mason-org/mason-registry",
+		-- roslyn: mason-org's roslyn-language-server nuget pkg is broken upstream
+		-- (no DotnetToolSettings.xml) — this registry ships prebuilt binaries
+		"github:Crashdummyy/mason-registry",
+	},
+})
+
 require("mason-lspconfig").setup({ ensure_installed = lsps })
 
 --- copied from lsp config
@@ -179,3 +187,8 @@ vim.diagnostic.config({
 for _, lsp in pairs(lsps) do
 	vim.lsp.enable(lsp)
 end
+
+-- ponytail: roslyn_ls, not omnisharp — omnisharp hangs in `initialize` on reactappportal.
+-- Kept out of `lsps` because mason-lspconfig maps roslyn_ls to mason-org's broken nuget
+-- package; install with `:MasonInstall roslyn` (Crashdummyy registry) instead.
+vim.lsp.enable("roslyn_ls")
