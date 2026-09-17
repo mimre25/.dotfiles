@@ -253,7 +253,10 @@ function git_show_interactive() {
 }
 
 function git_pick_interactive() {
-    glo --color=always | fzf --ansi --height '100%' --bind 'tab:toggle-preview' --preview 'git show --color {1}' --preview-window=up:60% --accept-nth 1 | clipcopy
+    commit=$(glo --color=always | fzf --ansi --height '100%' --bind 'tab:toggle-preview' --preview 'git show --color {1}' --preview-window=up:60% --accept-nth 1)
+    echo $commit | clipcopy
+    echo $commit
+
 }
 
 function git_diff_interactive() {
