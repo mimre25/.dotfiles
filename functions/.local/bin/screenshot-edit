@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# ponytail: grimblast --freeze blocks on `wait` for a hyprpicker click, so freeze here instead
+set -euo pipefail
+
+hyprpicker -r -z &
+pid=$!
+trap 'kill "$pid" 2>/dev/null' EXIT
+sleep 0.2
+
+file=$(mktemp --suffix=.png)
+grimblast save area "$file"   # no --freeze; slurp draws above the hyprpicker overlay
+kill "$pid" 2>/dev/null
+
+satty --early-exit --initial-tool arrow --copy-command wl-copy --annotation-size-factor 1 --filename "$file"
