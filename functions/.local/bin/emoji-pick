@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
+
+sel=$(emoji --raw | fzf --prompt='emoji> ' --exact --tiebreak=begin,length --reverse --height=40%)
+printf '%s' "${sel%% *}" | wl-copy
+echo "copied ${sel%% *}"
