@@ -104,6 +104,11 @@ vim.lsp.config("pylsp", {
 	},
 })
 
+-- needed by tailwind-tools' :TailwindColorToggle
+vim.lsp.config("tailwindcss", {
+	capabilities = { textDocument = { colorProvider = { dynamicRegistration = true } } },
+})
+
 vim.lsp.config("ts_ls", {
 	init_options = {
 		plugins = {
@@ -188,7 +193,20 @@ for _, lsp in pairs(lsps) do
 	vim.lsp.enable(lsp)
 end
 
--- ponytail: roslyn_ls, not omnisharp — omnisharp hangs in `initialize` on reactappportal.
--- Kept out of `lsps` because mason-lspconfig maps roslyn_ls to mason-org's broken nuget
--- package; install with `:MasonInstall roslyn` (Crashdummyy registry) instead.
-vim.lsp.enable("roslyn_ls")
+-- ponytail: roslyn.nvim (client name `roslyn`), not omnisharp and not lspconfig's `roslyn_ls`.
+-- omnisharp hangs in `initialize` on reactappportal; roslyn_ls loads the *nearest* .sln, and
+-- alsogit has 84 single-project .sln files next to their .csproj, so references stopped at one
+-- project. `:Roslyn target` picks the solution instead, like opening one in VS.
+-- Binary: `:MasonInstall roslyn` (Crashdummyy registry, configured above); needs server
+-- >= 5.12.0-1.26453.19, older ones reject the plugin's `--daemon-mode`. The plugin enables
+-- the client itself, so no vim.lsp.enable here.
+vim.lsp.config("roslyn", {
+	settings = {
+		["csharp|background_analysis"] = {
+			-- openFiles, not lspconfig's fullSolution default: on a 224-project target
+			-- fullSolution re-analyses everything continuously. Open files is enough.
+			dotnet_analyzer_diagnostics_scope = "openFiles",
+			dotnet_compiler_diagnostics_scope = "openFiles",
+		},
+	},
+})

@@ -43,6 +43,17 @@ require("lazy").setup({
 			"neovim/nvim-lspconfig",
 		},
 	},
+	{
+		"seblyng/roslyn.nvim",
+		opts = {
+			-- ponytail: broad_search off — alsogit has 140 .sln, scanning them all is waste.
+			-- Upward search from the buffer already surfaces the useful ancestors.
+			broad_search = false,
+			-- lock to the first solution attached; stops a second server (and a second copy
+			-- of the workspace in RAM) spawning when a file outside it is opened
+			lock_target = true,
+		},
+	},
 	{ "hrsh7th/cmp-cmdline" },
 	-- Autocompletion
 	--
@@ -308,6 +319,27 @@ require("lazy").setup({
 			vim.g.sqlformat_command = "sql-formatter"
 			vim.g.sqlformat_options = "-r -k upper"
 			vim.g.sqlformat_prog = "sql-formatter"
+		end,
+	},
+
+	-- URI encode/decode
+	{
+		"shota3506/vim-uriencode",
+	},
+
+	-- python import renaming on file renaming
+	{
+		"alexpasmantier/pymple.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			-- optional (nicer ui)
+			"stevearc/dressing.nvim",
+			-- "nvim-tree/nvim-web-devicons",
+		},
+		build = ":PympleBuild",
+		config = function()
+			require("pymple").setup()
 		end,
 	},
 }, {
